@@ -1,0 +1,79 @@
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+}
+.nav__logo a {
+  font-family: "Cedarville Cursive", cursive;
+  font-size: 30px;
+  color: #81c784;
+  text-decoration: none;
+}
+.nav__links {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .nav__links {
+    display: flex;
+    gap: 2rem;
+  }
+}
+.nav__icons {
+  display: flex;
+  gap: 0.6rem;
+  color: #6d6969;
+}
+.nav__icons span {
+  font-size: 1.3rem;
+}
+@media screen and (min-width: 768px) {
+  .nav__menu {
+    display: none;
+  }
+}
+
+.wrapper {
+  padding: 0 1rem;
+}
+
+h1 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.material-symbols-outlined {
+  color: #6d6969;
+}
+
+#sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: greenyellow;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+#sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  display: block;
+  transition: 0.3s;
+}
+#sidebar a:hover {
+  color: #818181;
+}
+
+/*# sourceMappingURL=style.css.map */
