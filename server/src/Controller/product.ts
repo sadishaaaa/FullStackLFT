@@ -10,6 +10,7 @@ export const createProduct = async (
 ) => {
   try {
     const body: IProduct = req.body;
+    const data = await productService.createProduct(body);
 
     return res.status(HttpStatus.CREATED).json({
       message: "product created successfully",

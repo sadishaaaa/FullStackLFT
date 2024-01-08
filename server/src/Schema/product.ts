@@ -1,68 +1,31 @@
 import Joi from "joi";
-export const UserSchema = Joi.object({
-  first_name: Joi.string().required().max(50).min(5).messages({
-    "string.base": "first name is required",
-    "string.empty": "first name cannot be empty",
-    "string.required": "first name is required",
-    "string.max": "first name should not exeed  50 charcter ",
-    "string.min": "first name should  have atleast 5 charcter ",
+export const ProductSchema = Joi.object({
+  product_name: Joi.string().required().max(50).min(5).messages({
+    "string.base": "Product Name is required",
+    "string.empty": "Product Name  cannot be empty",
+    "string.required": "Product Name  is required",
+    "string.max": "Product Name should not exeed  50 charcter ",
+    "string.min": "Product Name  should  have atleast 5 charcter ",
   }),
-  last_name: Joi.string().required().max(50).min(3).messages({
-    "string.base": "last name is required",
-    "string.empty": "last name cannot be empty",
-    "string.required": "last name is required",
-    "string.max": "last name should not exeed  50 charcter ",
-    "string.min": "last name should  have atleast 5 charcter ",
+  product_image: Joi.string().required().max(50).messages({
+    "string.base": "Product Image is required",
+    "string.empty": "Product Image  cannot be empty",
+    "string.required": "Product Image  is required",
+    "string.max": "Product Image should not exeed  50 charcter ",
   }),
-  email: Joi.string().required().max(50).min(10).email().messages({
-    "string.email": "Email must be a valid format",
-    "string.empty": "Email cannot be empty",
-    "string.required": "Email is required",
-    "string.min": "Email should contain at least 10 characters",
-    "string.max": "Email should not exceed 50 characters",
+  description: Joi.string().required().max(255).min(5).messages({
+    "string.empty": "Description cannot be empty",
+    "string.required": "Description is required",
+    "string.max": "Description should not exeed  255 charcter ",
+    "string.min": "Description should  have atleast 5 charcter ",
   }),
-  password: Joi.string()
-    .required()
-    .min(5)
-    .max(10)
-    .regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/)
-    .messages({
-      "string.required": "Password is required",
-      "string.min": "Password should have minimum 5 Character",
-      "string.max": "Password should not exceed 10 Characters",
-      "string.empty": "Paaword cannot be empty",
-    }),
-  address: Joi.string().required().max(50).messages({
-    "string.base": "Address should be in valid format",
-    "string.empty": "Task cannot be empty",
-    "string.required": "Address is required",
-    "string.max": "Address should not exceed 50 characters",
+  price: Joi.number().required().messages({
+    "number.empty": "Price cannot be empty",
+    "number.required": "Price is required",
   }),
-
-  contact_no: Joi.string().required().min(10).messages({
-    "string.base": "10 is the minimum requirement",
-    "string.required": "Phone Number is required",
-    "string.empty": "Task cannot be empty",
-    "string.min": "PhoneNumber should be at least 10",
+  stock: Joi.number().required().messages({
+    "number.empty": "Price cannot be empty",
+    "number.required": "Price is required",
   }),
 });
-export const updateUserSchema = Joi.object({
-  email: Joi.string().required().max(50).min(10).email().messages({
-    "string.email": "Email must be a valid format",
-    "string.empty": "Email cannot be empty",
-    "string.required": "Email is required",
-    "string.min": "Email should contain at least 10 characters",
-    "string.max": "Email should not exceed 50 characters",
-  }),
-  password: Joi.string()
-    .required()
-    .min(5)
-    .max(10)
-    .regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/)
-    .messages({
-      "string.required": "Password is required",
-      "string.min": "Password should have minimum 5 Character",
-      "string.max": "Password should not exceed 10 Characters",
-      "string.empty": "Paaword cannot be empty",
-    }),
-});
+export const updateUserSchema = Joi.object({});
