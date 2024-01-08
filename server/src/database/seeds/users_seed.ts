@@ -63,6 +63,17 @@ export function seed(knex: Knex): Promise<void> {
           address: "222 Birch St, Countryside",
           contact_no: "+1 345-678-9012",
         },
+        {
+          id: 10,
+          first_name: "Sadisha",
+          last_name: "Shrestha",
+          email: "admin@gmail.com",
+          password:
+            "$2b$10$2LiQNdUuCUa8qVpuyjknf.yJ8bZLRf6a0vWb/k7qwB4fLs8Ot2ZA6",
+          address: "LFT, Countryside",
+          contact_no: "+977 9869029494",
+          role: "admin",
+        },
       ]);
     });
 }

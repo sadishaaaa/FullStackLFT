@@ -11,6 +11,8 @@ const TABLE_NAME = "cart";
 export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable(TABLE_NAME, (table) => {
     table.bigIncrements();
+    table.integer("quantity")
+    table.integer("Subtotal")
     table
       .bigInteger("user_id")
       .unsigned()

@@ -17,6 +17,7 @@ export async function up(knex: Knex): Promise<void> {
     table.string("password", 255).notNullable();
     table.string("address", 255).notNullable();
     table.string("contact_no", 15).notNullable();
+    table.enum("role", ["admin", "user"]).notNullable();
   });
 }
 
