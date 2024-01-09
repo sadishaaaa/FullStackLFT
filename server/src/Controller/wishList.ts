@@ -1,26 +1,26 @@
 import { NextFunction, Request, Response } from "express";
 import HttpStatus from "http-status-codes";
-import * as cartService from "../Service/cart";
-import { ICart } from "../Interface/cart";
+import * as wishListService from "../Service/wishList";
+import { IWishList } from "../Interface/wishList";
 import { JwtPayload } from "jsonwebtoken";
 
-export const createCart = async (
+export const addToWishList = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const body: ICart = req.body;
-    const data = await cartService.createCart(body);
+    const body: IWishList = req.body;
+    const data = await wishListService.addToWishList(body);
 
     return res.status(HttpStatus.CREATED).json({
-      message: "cart created successfully",
+      message: "added to wishlist successfully",
     });
   } catch (error) {
     next(error);
   }
 };
-export const getCart = async (
+export const getWishList = async (
   req: Request & { user?: JwtPayload },
   res: Response,
   next: NextFunction
@@ -28,7 +28,7 @@ export const getCart = async (
   try {
     const id = Number(req?.user?.id);
 
-    const data = await cartService.getAll(id);
+    const data = await wishListService.getAll(id);
 
     return res.json({
       data,
@@ -38,7 +38,7 @@ export const getCart = async (
   }
 };
 
-export const deleteCart = async (
+export const deleteWishList = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -46,9 +46,9 @@ export const deleteCart = async (
   try {
     const id = Number(req.params.id);
 
-    const data = await cartService.deleteCart(id);
+    const data = await wishListService.deleteCart(id);
 
-    return res.json({ message: "cartItem successfully deleted" });
+    return res.json({ message: "Item successfully deleted" });
   } catch (error) {
     next(error);
   }

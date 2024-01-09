@@ -2,7 +2,7 @@ import CartModel from "../Model/cart";
 import NotFoundError from "../Error/notFoundError";
 import { ICart } from "../Interface/cart";
 
-export const createProduct = async (body: ICart) => {
+export const createCart = async (body: ICart) => {
   await CartModel.create({
     ...body,
   });
@@ -17,34 +17,34 @@ export const getAll = async (id: number) => {
   return data;
 };
 
-export const getById = async (id: number) => {
-  const data = await CartModel.getById(id);
+// export const getById = async (id: number) => {
+//   const data = await CartModel.getById(id);
 
-  if (!data) {
-    throw new NotFoundError(`Product with id: ${id} not found`);
-  }
+//   if (!data) {
+//     throw new NotFoundError(`Product with id: ${id} not found`);
+//   }
 
-  return data;
-};
+//   return data;
+// };
 
-export const update = async (id: number, body: ICart) => {
-  const product = await CartModel.getById(id);
+// export const update = async (id: number, body: ICart) => {
+//   const product = await CartModel.getAll(id);
 
-  if (!product) {
-    throw new NotFoundError(`Product with id: ${id} not found`);
-  }
+//   if (!product) {
+//     throw new NotFoundError(`Product with id: ${id} not found`);
+//   }
 
-  await CartModel.update(id, body);
+//   await CartModel.update(id, body);
 
-  const updatedProduct = await CartModel.getById(id);
+//   const updatedProduct = await CartModel.getAll(id);
 
-  return updatedProduct;
-};
+//   return updatedProduct;
+// };
 
-export const deleteProduct = async (id: number) => {
-  const product = await CartModel.getById(id);
+export const deleteCart = async (id: number) => {
+  const cartItem = await CartModel.getAll(id);
 
-  if (!product) {
+  if (!cartItem) {
     throw new NotFoundError(`Product with id: ${id} not found`);
   }
 
