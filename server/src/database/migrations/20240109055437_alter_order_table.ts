@@ -9,23 +9,13 @@ const TABLE_NAME = "order";
  * @returns {Promise}
  */
 export async function up(knex: Knex): Promise<void> {
-  return knex.schema.createTable(TABLE_NAME, (table) => {
-    table.bigIncrements();
-    table.string("shipping_address");
-    table.string("billing_address");
-    table.string("payment_status");
+  return knex.schema.alterTable(TABLE_NAME, (table) => {
+    table.timestamp("order_time").notNullable().defaultTo(knex.raw("now()"));
+    table.boolean("payment_status").alter();
     table
-      .bigInteger("user_id")
-      .unsigned()
+      .enum("mode_of_payment", ["COD", "Khalti"])
       .notNullable()
-      .references("id")
-      .inTable("users");
-    table
-      .bigInteger("product_id")
-      .unsigned()
-      .notNullable()
-      .references("id")
-      .inTable("products");
+      .defaultTo("COD");
     table
       .bigInteger("cart_id")
       .unsigned()

@@ -5,6 +5,7 @@ import authRoutes from "./auth";
 import userRoutes from "./user";
 import productRoutes from "./product";
 import cartRoutes from "./cart";
+import orderRoutes from "./order";
 import { auth } from "../Middleware/auth";
 
 const router = Router();
@@ -14,6 +15,7 @@ router.use("/users", auth, userRoutes);
 router.use("/products", productRoutes);
 router.use("/cart", auth, cartRoutes);
 router.use("/wishList", auth, cartRoutes);
+router.use("/order", orderRoutes);
 // router.use("/cookie", cookieRoutes);
 
 export default router;
