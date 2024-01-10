@@ -16,6 +16,28 @@ const renderNavBar = (placeholder: HTMLElement, active: string) => {
       }
       const currentPage = document.getElementById(active);
       currentPage!.classList.add("active");
+
+      const openSidebarSpan = document.getElementById("openSidebar")!;
+      openSidebarSpan.onclick = openSidebar;
+
+      const closeSidebarSpan = document.getElementById("menu")!;
+
+      closeSidebarSpan.onclick = closeSidebar;
     });
 };
+
+function openSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  console.log(sidebar);
+  if (sidebar) {
+    sidebar.style.width = "100%";
+  }
+}
+
+function closeSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  if (sidebar) {
+    sidebar.style.width = "0";
+  }
+}
 export default renderNavBar;
