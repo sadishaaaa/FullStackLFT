@@ -1,7 +1,6 @@
-import { Knex } from 'knex';
+import { Knex } from "knex";
 
-const TABLE_NAME = 'table_name';
-
+const TABLE_NAME = "orderdetail";
 
 /**
  * Create table TABLE_NAME.
@@ -13,23 +12,18 @@ export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable(TABLE_NAME, (table) => {
     table.bigIncrements();
 
-    table.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'));
-    
     table
-      .bigInteger('created_by')
+      .bigInteger("order_id")
       .unsigned()
       .notNullable()
-      .references('id')
-      .inTable('users');
-      
-    table.timestamp('updated_at').nullable();
-    
+      .references("id")
+      .inTable("order");
     table
-      .bigInteger('updated_by')
+      .bigInteger("product_id")
       .unsigned()
-      .references('id')
-      .inTable('users')
-      .nullable();
+      .references("id")
+      .inTable("products")
+      .notNullable();
   });
 }
 

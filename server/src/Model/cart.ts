@@ -21,22 +21,6 @@ export default class CartModel extends BaseModel {
       .where("cart.user_id", id);
   }
 
-  //   static async getById(id: number) {
-  //     return this.queryBuilder()
-  //       .select(
-  //         "cart.cartId",
-  //         "cart.quantity",
-  //         "cart.subtotal",
-  //         "products.product_name",
-  //         "products.product_image",
-  //         "products.price",
-  //         "users.first_name",
-  //         "users.last_name"
-  //       )
-  //       .join("users", "cart.userId", "=", "users.id")
-  //       .join("products", "cart.productId", "=", "products.id");
-  //   }
-
   static async create(cart: ICart) {
     return this.queryBuilder().insert(cart).table("cart");
   }

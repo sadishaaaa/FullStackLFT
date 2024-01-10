@@ -1,6 +1,6 @@
 import { Knex } from "knex";
 
-const TABLE_NAME = "order";
+const TABLE_NAME = "orderdetail";
 
 /**
  * Create table TABLE_NAME.
@@ -11,21 +11,18 @@ const TABLE_NAME = "order";
 export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable(TABLE_NAME, (table) => {
     table.bigIncrements();
-    table.string("shipping_address");
-    table.string("billing_address");
-    table.string("payment_status");
     table
-      .bigInteger("user_id")
+      .bigInteger("order_id")
       .unsigned()
       .notNullable()
       .references("id")
-      .inTable("users");
+      .inTable("order");
     table
       .bigInteger("product_id")
       .unsigned()
-      .notNullable()
       .references("id")
-      .inTable("products");
+      .inTable("products")
+      .notNullable();
   });
 }
 

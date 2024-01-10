@@ -3,46 +3,30 @@ import { IOrder } from "../Interface/order";
 import BaseModel from "../Model/baseModel";
 // import { IProduct } from "../Interface/product";
 
-export default class CartModel extends BaseModel {
+export default class OrderModel extends BaseModel {
+  static async create(order: IOrder) {
+    return this.queryBuilder().insert(order).table("order").returning("id");
+  }
   static async getAll(id: number) {
     return this.queryBuilder()
       .select({
-        id: "cart.id",
-        quantity: "cart.quantity",
-        subtotal: "cart.Subtotal",
+        id: "order.id",
+        user_id: "order.user_id",
+        order_date: "order.order_time",
         product_name: "products.product_name",
         product_image: "products.product_image",
         price: "products.price",
         first_name: "users.first_name",
         last_name: "users.last_name",
       })
-      .from("cart")
-      .join("users", "cart.userId", "=", "users.id")
-      .join("products", "cart.productId", "=", "products.id")
-      .where("cart.user_id", id);
-  }
-
-  //   static async getById(id: number) {
-  //     return this.queryBuilder()
-  //       .select(
-  //         "cart.cartId",
-  //         "cart.quantity",
-  //         "cart.subtotal",
-  //         "products.product_name",
-  //         "products.product_image",
-  //         "products.price",
-  //         "users.first_name",
-  //         "users.last_name"
-  //       )
-  //       .join("users", "cart.userId", "=", "users.id")
-  //       .join("products", "cart.productId", "=", "products.id");
-  //   }
-
-  static async create(order: IOrder) {
-    return this.queryBuilder().insert(order).table("order");
+      .from("order")
+      .join("users", "order.user_id", "=", "users.id")
+      .join("orderdetail", "order.id", "=", "orderdetail.order_id")
+      .join("products", "orderdetail.product_id", "=", "products.id")
+      .where("order.user_id", id);
   }
 
   static async delete(id: number) {
-    return this.queryBuilder().table("cart").where({ id }).del();
+    return this.queryBuilder().table("order").where({ id }).del();
   }
 }
