@@ -2,13 +2,18 @@ import ProductModel from "../Model/product";
 import NotFoundError from "../Error/notFoundError";
 import { IProduct } from "../Interface/product";
 
-export const createProduct = async (body: IProduct) => {
+export const createProduct = async (
+  body: IProduct,
+  product_image: Express.Multer.File
+) => {
+  body.product_image = `http://localhost:8000/${product_image.filename}`;
+  console.log("Image", body.product_image);
   await ProductModel.create({
     ...body,
   });
 
   return {
-    message: "User signed up successfully",
+    message: "Product added successfully",
   };
 };
 export const getAll = async () => {

@@ -10,9 +10,15 @@ import {
 import { validateReqBody, validateReqQuery } from "../Middleware/validator";
 import { updateUserSchema } from "../Schema/user";
 import { ProductSchema } from "../Schema/product";
+import upload from "../Util/upload";
 
 const router = Router();
-router.post("/", validateReqBody(ProductSchema), createProduct);
+router.post(
+  "/",
+  upload.single("file"),
+  validateReqBody(ProductSchema),
+  createProduct
+);
 
 router.get("/", getAll);
 

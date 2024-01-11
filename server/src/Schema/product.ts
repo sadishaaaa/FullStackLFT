@@ -7,12 +7,9 @@ export const ProductSchema = Joi.object({
     "string.max": "Product Name should not exeed  50 charcter ",
     "string.min": "Product Name  should  have atleast 5 charcter ",
   }),
-  product_image: Joi.string().required().max(50).messages({
-    "string.base": "Product Image is required",
-    "string.empty": "Product Image  cannot be empty",
-    "string.required": "Product Image  is required",
-    "string.max": "Product Image should not exeed  50 charcter ",
-  }),
+  // product_image: Joi.string().required().max(50).messages({
+  //   "string.empty": "Product Image  cannot be empty",
+  // }),
   description: Joi.string().required().max(255).min(5).messages({
     "string.empty": "Description cannot be empty",
     "string.required": "Description is required",

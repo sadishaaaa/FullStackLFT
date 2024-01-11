@@ -10,7 +10,10 @@ export const createProduct = async (
 ) => {
   try {
     const body: IProduct = req.body;
-    const data = await productService.createProduct(body);
+    const product_image = req.file as Express.Multer.File;
+    const product_img = `http://localhost:8000/${product_image.filename}`;
+    console.log(product_img);
+    const data = await productService.createProduct(body, product_image);
 
     return res.status(HttpStatus.CREATED).json({
       message: "product created successfully",
