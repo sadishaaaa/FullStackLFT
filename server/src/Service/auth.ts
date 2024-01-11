@@ -54,5 +54,6 @@ export const login = async (body: IUser) => {
   return {
     accessToken,
     refreshToken,
+    role: user.role,
   };
 };

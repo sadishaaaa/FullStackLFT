@@ -15,7 +15,7 @@ export const auth = async (req: any, res: Response, next: NextFunction) => {
     }
 
     const decode = jwt.verify(token, config.jwt.accessTokenSecret!);
-
+    console.log(decode);
     req.user = decode;
 
     next();

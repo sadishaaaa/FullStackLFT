@@ -21,6 +21,7 @@ export default class UserModel extends BaseModel {
         first_name: "first_name",
         last_name: "last_name",
         email: "email",
+        role: "role",
       })
       .from("users")
       .where({ id })
@@ -35,6 +36,7 @@ export default class UserModel extends BaseModel {
         last_name: "last_name",
         password: "password",
         email: "email",
+        role: "role",
       })
       .from("users")
       .where({ email });

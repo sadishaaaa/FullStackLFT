@@ -1,7 +1,9 @@
 import { NextFunction, Request, Response } from "express";
+import { JwtPayload } from "jsonwebtoken";
 
 import * as userService from "../Service/user";
 import { IUser } from "../Interface/user";
+import NotFoundError from "../Error/notFoundError";
 
 export const getAll = async (_req: Request, res: Response) => {
   const data = await userService.getAll();
@@ -44,7 +46,24 @@ export const updateUser = async (
     next(error);
   }
 };
+export const checkTokenvalid = async (
+  req: any,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    console.log("controllers", req.user);
 
+    const id = req?.user?.id;
+    const data = await userService.getById(id);
+
+    return res.json({
+      data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 export const deleteUser = async (
   req: Request,
   res: Response,
