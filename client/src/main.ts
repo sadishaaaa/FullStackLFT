@@ -3,5 +3,5 @@ import "normalize.css";
 import "./styles/style.css";
 
 window.onload = () => {
-  window.location.href = "/component/pages/home.html";
+  window.location.href = "/views/user/home.html";
 };

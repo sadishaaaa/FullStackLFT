@@ -18,9 +18,9 @@ signInButton.addEventListener("click", async (event) => {
     const userRole = response.data.user.role;
     console.log(userRole);
     if (userRole === "user") {
-      window.location.href = "/component/Pages/home.html";
+      window.location.href = "/views/user/home.html";
     } else if (userRole === "admin") {
-      window.location.href = "/component/Sidebar/sidebar.html";
+      window.location.href = "/views/admin/product/product.html";
     }
     localStorage.setItem("accessToken", response.data.accessToken);
     localStorage.setItem("refreshToken", response.data.refreshToken);
