@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        margin: 5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="sidebar-placeholder"></div>
+
+    <div class="container mt-5">
+      <h2>Add Product</h2>
+      <form>
+        <!-- Product Name -->
+        <div class="mb-3">
+          <label for="productName" class="form-label">Product Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="productName"
+            placeholder="Enter product name"
+            required
+          />
+        </div>
+
+        <!-- Image Upload -->
+        <div class="mb-3">
+          <label for="productImage" class="form-label">Product Image</label>
+          <input
+            type="file"
+            class="form-control"
+            id="productImage"
+            accept="image/*"
+            required
+          />
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+          <label for="productDescription" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            id="productDescription"
+            rows="3"
+            placeholder="Enter product description"
+            required
+          ></textarea>
+        </div>
+
+        <!-- Price -->
+        <div class="mb-3">
+          <label for="productPrice" class="form-label">Price ($)</label>
+          <input
+            type="number"
+            class="form-control"
+            id="productPrice"
+            placeholder="Enter product price"
+            required
+          />
+        </div>
+
+        <!-- Stock -->
+        <div class="mb-3">
+          <label for="productStock" class="form-label">Stock</label>
+          <input
+            type="number"
+            class="form-control"
+            id="productStock"
+            placeholder="Enter product stock"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Product</button>
+      </form>
+    </div>
+  </body>
+  <script type="module" src="../renderSideBar.ts"></script>
+</html>

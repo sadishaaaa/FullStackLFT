@@ -18,14 +18,14 @@ signInButton.addEventListener("click", async (event) => {
     const userRole = response.data.user.role;
     console.log(userRole);
     if (userRole === "user") {
-      window.location.href = "/component/Pages/userProfile/userProfile.html";
+      window.location.href = "/component/Pages/home.html";
     } else if (userRole === "admin") {
-      window.location.href = "/component/Pages/userProfile/userProfile.html";
+      window.location.href = "/component/Sidebar/sidebar.html";
     }
     localStorage.setItem("accessToken", response.data.accessToken);
     localStorage.setItem("refreshToken", response.data.refreshToken);
 
-    // console.log("login successfully", response.data);
+    console.log("login successfully", response.data);
   } catch (error) {
     console.log(error);
   }

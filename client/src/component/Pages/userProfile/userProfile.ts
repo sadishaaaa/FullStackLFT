@@ -33,3 +33,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("");
   }
 });
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const logoutButton = document.getElementById("logout");
+  if (logoutButton) {
+    logoutButton.addEventListener("click", () => {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      window.location.href = "../login/login.html";
+    });
+  }
+});

@@ -10,8 +10,70 @@
       crossorigin="anonymous"
     />
     <title>Document</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+      }
+
+      #sidebar {
+        height: 100%;
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #92b9e0;
+        padding-top: 20px;
+        color: #fff;
+      }
+
+      #sidebar .nav-link {
+        color: #fff;
+      }
+
+      #content {
+        margin-left: 250px;
+        padding: 20px;
+      }
+    </style>
   </head>
   <body>
-    <h1>sidebaar</h1>
+    <div class="d-flex" id="wrapper">
+      <!-- Sidebar -->
+      <div id="sidebar">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              href="/component/Pages/admin/dashboard.html"
+              target="_self"
+            >
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="/component/Pages/admin/product.html"
+              target="_self"
+            >
+              Products
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="/component/Pages/admin/order.html"
+              target="_self"
+            >
+              Order
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"> Customers </a>
+          </li>
+          <!-- Add more items as needed -->
+        </ul>
+      </div>
+    </div>
   </body>
 </html>
