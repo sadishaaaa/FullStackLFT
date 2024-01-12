@@ -1,13 +1,13 @@
 import Joi from "joi";
 export const UserSchema = Joi.object({
-  first_name: Joi.string().required().max(50).min(5).messages({
+  firstName: Joi.string().required().max(50).min(5).messages({
     "string.base": "first name is required",
     "string.empty": "first name cannot be empty",
     "string.required": "first name is required",
     "string.max": "first name should not exeed  50 charcter ",
     "string.min": "first name should  have atleast 5 charcter ",
   }),
-  last_name: Joi.string().required().max(50).min(3).messages({
+  lastName: Joi.string().required().max(50).min(3).messages({
     "string.base": "last name is required",
     "string.empty": "last name cannot be empty",
     "string.required": "last name is required",
@@ -24,12 +24,12 @@ export const UserSchema = Joi.object({
   password: Joi.string()
     .required()
     .min(5)
-    .max(10)
+    .max(20)
     .regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/)
     .messages({
       "string.required": "Password is required",
       "string.min": "Password should have minimum 5 Character",
-      "string.max": "Password should not exceed 10 Characters",
+      "string.max": "Password should not exceed 20 Characters",
       "string.empty": "Paaword cannot be empty",
     }),
   address: Joi.string().required().max(50).messages({
@@ -39,7 +39,7 @@ export const UserSchema = Joi.object({
     "string.max": "Address should not exceed 50 characters",
   }),
 
-  contact_no: Joi.string().required().min(10).messages({
+  contactNo: Joi.string().required().min(10).messages({
     "string.base": "10 is the minimum requirement",
     "string.required": "Phone Number is required",
     "string.empty": "Task cannot be empty",

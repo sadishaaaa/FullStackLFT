@@ -2,5 +2,6 @@
 import "normalize.css";
 import "./styles/style.css";
 
-// Define the openSidebar and closeSidebar functions
-
+window.onload = () => {
+  window.location.href = "/component/pages/home.html";
+};
