@@ -28,7 +28,7 @@ signUpButton.addEventListener("click", async (event) => {
     const response = await axios.post(signupEndpoint, userData);
 
     console.log("User signed up successfully", response.data);
-    window.location.href = "./login.html";
+    window.location.href = "../login/login.html";
   } catch (error) {
     console.log(error);
   }

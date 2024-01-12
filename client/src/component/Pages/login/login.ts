@@ -15,17 +15,17 @@ signInButton.addEventListener("click", async (event) => {
       password: password.value,
     };
     const response = await axios.post(signInEndpoint, userData);
-    localStorage.setItem("accessToken", response.data.accessToken);
-    localStorage.setItem("refreshToken", response.data.refreshToken);
-    const userRole = response.data.role;
+    const userRole = response.data.user.role;
     console.log(userRole);
     if (userRole === "user") {
-      window.location.href = "/component/Pages/home.html";
+      window.location.href = "/component/Pages/userProfile/userProfile.html";
     } else if (userRole === "admin") {
-      window.location.href = "/component/Sidebar/sidebar.html";
+      window.location.href = "/component/Pages/userProfile/userProfile.html";
     }
+    localStorage.setItem("accessToken", response.data.accessToken);
+    localStorage.setItem("refreshToken", response.data.refreshToken);
 
-    console.log("login successfully", response.data);
+    // console.log("login successfully", response.data);
   } catch (error) {
     console.log(error);
   }
