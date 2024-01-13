@@ -1,5 +1,7 @@
 import axios from "axios";
+import Toastify from "toastify-js";
 
+import "toastify-js/src/toastify.css";
 const addProductEndpoint = "http://localhost:8000/products";
 const productName = document.getElementById("productName") as HTMLInputElement;
 const productImage = document.getElementById(
@@ -33,9 +35,24 @@ addProductButton.addEventListener("click", async (event) => {
     formData.append("stock", productStock.value);
 
     const response = await axios.post(addProductEndpoint, formData);
-
+    Toastify({
+      text: "Product added successfully",
+      duration: 3000, // 3 seconds
+      close: true,
+      gravity: "top", // 'top' or 'bottom'
+      position: "right", // 'left', 'right', 'center'
+      backgroundColor: "green",
+    }).showToast();
     console.log("Product added successfully", response.data);
   } catch (error) {
+    Toastify({
+      text: "Product added successfully",
+      duration: 3000, // 3 seconds
+      close: true,
+      gravity: "top", // 'top' or 'bottom'
+      position: "right", // 'left', 'right', 'center'
+      backgroundColor: "green",
+    }).showToast();
     console.log("Error adding product:", error);
   }
 });

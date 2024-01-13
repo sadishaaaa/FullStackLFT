@@ -35,6 +35,52 @@ export const getAll = async (
     next(error);
   }
 };
+export const getAllOrder = async (
+  req: Request & { user?: JwtPayload },
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const data = await orderService.getAllOrder();
+
+    return res.json({
+      data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+export const updateOrder = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const id = Number(req.params.id);
+    const body: IOrder = req.body;
+    const data = await orderService.update(id, body);
+
+    return res.json({ data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteOrder = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const id = Number(req.params.id);
+
+    const data = await orderService.deleteOrder(id);
+
+    return res.json({ message: "Product successfully deleted" });
+  } catch (error) {
+    next(error);
+  }
+};
 //router "/", controller.createProduct
 //controller -> services.createProduct
 //services -> model.createProduct done

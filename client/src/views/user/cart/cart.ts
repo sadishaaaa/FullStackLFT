@@ -69,13 +69,13 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   // Checkout button click event
-  const checkoutButton = document.getElementById("checkout-btn");
-  if (checkoutButton) {
-    checkoutButton.addEventListener("click", () => {
-      alert("Checkout functionality to be implemented.");
-      // Implement your checkout logic here (redirect to checkout page, etc.)
-    });
-  }
+  //   const checkoutButton = document.getElementById("checkout-btn");
+  //   if (checkoutButton) {
+  //     checkoutButton.addEventListener("click", () => {
+  //       alert("Checkout functionality to be implemented.");
+  //       // Implement your checkout logic here (redirect to checkout page, etc.)
+  //     });
+  //   }
 
   async function removeCartItem(cartItemId: number) {
     try {

@@ -17,9 +17,11 @@
     "vite": "^5.0.8"
   },
   "dependencies": {
+    "@types/toastify-js": "^1.12.3",
     "axios": "^1.6.5",
     "bootstrap": "^5.3.2",
     "normalize.css": "^8.0.1",
-    "sass": "^1.69.5"
+    "sass": "^1.69.5",
+    "toastify-js": "^1.12.0"
   }
 }

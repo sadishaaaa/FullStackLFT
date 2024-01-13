@@ -34,3 +34,31 @@ export const getAll = async (id: number) => {
 
   return data;
 };
+export const getAllOrder = async () => {
+  const data = await OrderModel.getAllOrder();
+
+  return data;
+};
+export const update = async (id: number, body: IOrder) => {
+  const order = await OrderModel.getAll(id);
+
+  if (!order) {
+    throw new NotFoundError(`User with id: ${id} not found`);
+  }
+
+  await OrderModel.update(id, body);
+
+  const updatedOrder = await OrderModel.getAll(id);
+
+  return updatedOrder;
+};
+
+export const deleteOrder = async (id: number) => {
+  const Order = await OrderModel.getAll(id);
+
+  if (!Order) {
+    throw new NotFoundError(`Order with id: ${id} not found`);
+  }
+
+  await OrderModel.delete(id);
+};
