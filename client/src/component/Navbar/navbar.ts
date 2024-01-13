@@ -1,5 +1,5 @@
 const renderNavBar = (placeholder: HTMLElement, active: string) => {
-  fetch("../../component/Navbar/navbar.html")
+  fetch("/component/Navbar/navbar.html")
     .then((response) => response.text())
     .then((data) => {
       placeholder.innerHTML = data;
@@ -15,7 +15,6 @@ const renderNavBar = (placeholder: HTMLElement, active: string) => {
       openSidebarSpan.onclick = openSidebar;
 
       const closeSidebarSpan = document.getElementById("menu")!;
-
       closeSidebarSpan.onclick = closeSidebar;
     });
 };

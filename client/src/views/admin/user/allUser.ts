@@ -3,7 +3,12 @@ import { IUser } from "./IUser";
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const response = await axios.get("http://localhost:8000/users");
+    const response = await axios.get("http://localhost:8000/users", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    });
+
     const user: IUser[] = response.data.data;
     console.log(response.data.data);
     const userContainer = document.getElementById("userContainer");
@@ -37,8 +42,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td>${user.address}</td>
           <td>${user.contactNo}</td>
           <td>
-            <button class="btn btn-primary"><a href="/views/admin/product/updateProduct.html">Update</a></button>
-            <button class="btn btn-danger">Delete</button>
+          <button class="btn btn-primary update-btn" data-product-id="${user.id}">Update</button>
+          <button class="btn btn-danger delete-btn" data-product-id="${user.id}">Delete</button>
           </td>
         `;
         tableBody.appendChild(row);
@@ -48,6 +53,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       userContainer.appendChild(table);
     }
   } catch (error) {
-    console.error("Error fetching product data:", error);
+    console.log("Error fetching product data:", error);
   }
 });

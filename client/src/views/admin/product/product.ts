@@ -28,7 +28,7 @@ addProductButton.addEventListener("click", async (event) => {
       formData.append("file", productImage.files[0]);
     }
 
-    formData.append("decription", productDescription.value);
+    formData.append("description", productDescription.value);
     formData.append("price", productPrice.value);
     formData.append("stock", productStock.value);
 
