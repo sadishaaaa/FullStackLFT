@@ -76,4 +76,36 @@ ul {
   color: #818181;
 }
 
+#productContainer {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 3rem;
+  padding: 5rem;
+}
+
+.product-item {
+  border: 1px solid black;
+  padding: 2rem;
+}
+.product-item img {
+  width: 80px;
+}
+
+.btn {
+  border: 1px solid rgb(0, 0, 0);
+  padding: 10px;
+}
+
+.button {
+  display: flex;
+  gap: 2rem;
+  color: white;
+}
+.button__updateBtn {
+  background-color: cornflowerblue;
+}
+.button__deleteBtn {
+  background-color: red;
+}
+
 /*# sourceMappingURL=style.css.map */

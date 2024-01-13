@@ -10,10 +10,10 @@ export const createProduct = async (
 ) => {
   try {
     const body: IProduct = req.body;
-    const product_image = req.file as Express.Multer.File;
-    const product_img = `http://localhost:8000/${product_image.filename}`;
-    console.log(product_img);
-    const data = await productService.createProduct(body, product_image);
+    const productImage = req.file as Express.Multer.File;
+    const productImg = `http://localhost:8000/${productImage.filename}`;
+    console.log(productImg);
+    const data = await productService.createProduct(body, productImage);
 
     return res.status(HttpStatus.CREATED).json({
       message: "product created successfully",
@@ -74,7 +74,7 @@ export const deleteProduct = async (
 
     const data = await productService.deleteProduct(id);
 
-    return res.json({ message: "User successfully deleted" });
+    return res.json({ message: "Product successfully deleted" });
   } catch (error) {
     next(error);
   }

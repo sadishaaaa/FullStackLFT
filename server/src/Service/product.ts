@@ -4,10 +4,10 @@ import { IProduct } from "../Interface/product";
 
 export const createProduct = async (
   body: IProduct,
-  product_image: Express.Multer.File
+  productImage: Express.Multer.File
 ) => {
-  body.product_image = `http://localhost:8000/${product_image.filename}`;
-  console.log("Image", body.product_image);
+  body.productImage = `http://localhost:8000/${productImage.filename}`;
+  console.log("Image", body.productImage);
   await ProductModel.create({
     ...body,
   });

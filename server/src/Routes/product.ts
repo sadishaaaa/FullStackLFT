@@ -13,19 +13,18 @@ import { ProductSchema } from "../Schema/product";
 import upload from "../Util/upload";
 
 const router = Router();
-router.post(
-  "/",
-  upload.single("file"),
-  validateReqBody(ProductSchema),
-  createProduct
-);
+router.post("/", upload.single("file"), createProduct);
 
 router.get("/", getAll);
 
-router.get("/:id", getById);
+router
+  .route("/:id")
+  .get(getById)
+  .put(validateReqBody(ProductSchema), updateProduct)
+  .delete(deleteProduct);
 
-router.put("/:id", validateReqBody(ProductSchema), updateProduct);
+// router.put("/:id", validateReqBody(ProductSchema), updateProduct);
 
-router.delete("/:id", deleteProduct);
+// router.delete("/:id", deleteProduct);
 
 export default router;

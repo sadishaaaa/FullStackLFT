@@ -31,13 +31,7 @@
         <!-- Image Upload -->
         <div class="mb-3">
           <label for="productImage" class="form-label">Product Image</label>
-          <input
-            type="file"
-            class="form-control"
-            id="productImage"
-            accept="image/*"
-            required
-          />
+          <input type="file" class="form-control" id="productImage" required />
         </div>
 
         <!-- Description -->
@@ -76,9 +70,12 @@
           />
         </div>
 
-        <button type="submit" class="btn btn-primary">Add Product</button>
+        <button type="submit" class="btn btn-primary" id="addProductBtn">
+          Add Product
+        </button>
       </form>
     </div>
   </body>
   <script type="module" src="../renderSideBar.ts"></script>
+  <script type="module" src="./product.ts"></script>
 </html>

@@ -6,8 +6,9 @@ export default class ProductModel extends BaseModel {
     return this.queryBuilder()
       .select({
         id: "id",
-        product_name: "product_name",
-        product_image: "product_image",
+        productName: "product_name",
+        productImage: "product_image",
+        description: "description",
         price: "price",
         stock: "stock",
       })
@@ -18,8 +19,8 @@ export default class ProductModel extends BaseModel {
     return this.queryBuilder()
       .select({
         id: "id",
-        product_name: "product_name",
-        product_image: "product_image",
+        productName: "product_name",
+        productimage: "product_image",
         description: "description",
         price: "price",
         stock: "stock",

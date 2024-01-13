@@ -1,6 +1,6 @@
 import Joi from "joi";
 export const ProductSchema = Joi.object({
-  product_name: Joi.string().required().max(50).min(5).messages({
+  productName: Joi.string().required().max(50).min(5).messages({
     "string.base": "Product Name is required",
     "string.empty": "Product Name  cannot be empty",
     "string.required": "Product Name  is required",
