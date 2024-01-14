@@ -2,15 +2,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  // gap: 2rem;
-  padding: 0 9rem 0 7rem;
+  padding: 0 2rem 0 2rem;
+  gap: 6rem;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 9rem 0 7rem;
+  }
 
   &__logo {
     a {
       font-family: "Cedarville Cursive", cursive;
-      font-size: 2.6rem;
+      font-size: 2rem;
       color: #81c784;
       text-decoration: none;
+      @media screen and (min-width: 768px) {
+        font-size: 2.6rem;
+      }
     }
   }
   &__links {
@@ -19,6 +26,10 @@
     a {
       color: #6d6969;
       font-family: "Montserrat", sans-serif;
+    }
+    a:hover {
+      color: #625f5f;
+      font-weight: bold;
     }
 
     @media screen and (min-width: 768px) {

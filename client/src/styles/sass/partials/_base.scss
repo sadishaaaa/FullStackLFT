@@ -1,12 +1,22 @@
 h1 {
   margin: 0;
 }
+body {
+  margin: 0;
+}
 a {
   text-decoration: none;
+  color: white;
 }
 ul {
   list-style: none;
 }
 .material-symbols-outlined {
   color: #6d6969;
+}
+button {
+  border: none;
+  width: 40%;
+  height: 3rem;
+  margin: 2rem 0;
 }

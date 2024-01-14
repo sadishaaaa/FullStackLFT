@@ -5,10 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="/utils/checkAuth.ts"></script>
+    <link rel="stylesheet" href="../../styles/style.css" />
   </head>
   <body>
     <div id="navbar"></div>
-    <h1>home page</h1>
+    <section class="container">
+      <div class="content">
+        <div class="content__text">
+          <h1>Elevate Your Living Space <br />with Comfort and Style!</h1>
+          <p>
+            Redefine comfort and style for your home. Discover a curated
+            collection of sofas that blend luxury with functionality. From
+            timeless classics to contemporary marvels, each piece is crafted to
+            perfection. Elevate your living space with our sofas .a seamless
+            fusion of comfort and style that transforms your home into a haven
+            of relaxation. Explore Inherit today and redefine your living
+            experience!
+          </p>
+          <button type="button" class="text__btn">
+            <a href="../user/product/product.html">Explore</a>
+          </button>
+        </div>
+        <div class="content__img">
+          <div class="carousel-container">
+            <!-- Images -->
+            <div class="carousel-imgs">
+              <img src="../../img/1325.jpg" class="carousel-img visible" />
+              <img src="../../img/523.jpg" class="carousel-img hidden" />
+              <img src="../../img/525.jpg" class="carousel-img hidden" />
+              <img src="../../img/529.jpg" class="carousel-img hidden" />
+            </div>
+            <!-- Buttons -->
+            <a class="prev arrow">&#10094;</a>
+            <a class="next arrow">&#10095;</a>
+
+            <!--  Div container for dynamic dots -->
+            <div class="slide-dots"></div>
+          </div>
+          <!-- Titles of the Images -->
+          <div class="carousel-titles">
+            <p class="carousel-title visible">Image 1</p>
+            <p class="carousel-title hidden">Image 2</p>
+            <p class="carousel-title hidden">Image 3</p>
+            <p class="carousel-title hidden">Image 4</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
   <script type="module" src="./renderNavBar.ts"></script>
+  <script type="module" src="./carousel.ts"></script>
 </html>
