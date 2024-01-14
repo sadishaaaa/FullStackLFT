@@ -1,21 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap");
 .nav {
   display: flex;
   align-items: center;
-  gap: 6rem;
+  justify-content: space-between;
+  padding: 0 9rem 0 7rem;
 }
 .nav__logo a {
   font-family: "Cedarville Cursive", cursive;
-  font-size: 30px;
+  font-size: 2.6rem;
   color: #81c784;
   text-decoration: none;
 }
 .nav__links {
   display: none;
+  padding-left: 0;
+}
+.nav__links a {
+  color: #6d6969;
+  font-family: "Montserrat", sans-serif;
 }
 @media screen and (min-width: 768px) {
   .nav__links {
     display: flex;
-    gap: 2rem;
+    gap: 6rem;
   }
 }
 .nav__icons {

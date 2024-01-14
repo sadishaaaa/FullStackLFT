@@ -39,6 +39,16 @@ export const getAllOrder = async () => {
 
   return data;
 };
+export const getById = async (id: number) => {
+  const data = await OrderModel.getById(id);
+
+  if (!data) {
+    throw new NotFoundError(`order with id: ${id} not found`);
+  }
+
+  return data;
+};
+
 export const update = async (id: number, body: IOrder) => {
   const order = await OrderModel.getAll(id);
 
@@ -55,10 +65,46 @@ export const update = async (id: number, body: IOrder) => {
 
 export const deleteOrder = async (id: number) => {
   const Order = await OrderModel.getAll(id);
+  // const OrderDetail = await OrderDetailModel.get
 
   if (!Order) {
     throw new NotFoundError(`Order with id: ${id} not found`);
   }
 
   await OrderModel.delete(id);
+};
+
+// services
+export const toggleOrderStatus = async (id: number) => {
+  const order = await OrderModel.queryBuilder()
+    .table("order")
+    .where({ id: id })
+    .first();
+
+  if (!order) {
+    throw new Error("Order not found");
+  }
+
+  console.log("Initial Status:", order.paymentStatus);
+
+  const newStatus = order.paymentStatus;
+
+  let result = await OrderModel.updateStatus(id, newStatus);
+
+  const updatedOrder = await OrderModel.queryBuilder()
+    .table("order")
+    .where({ id: id })
+    .first();
+
+  if (!updatedOrder) {
+    throw new Error("Error fetching updated order");
+  }
+
+  console.log("Updated Status:", updatedOrder.paymentStatus);
+
+  return {
+    order_id: id,
+    data: updatedOrder.paymentStatus,
+    message: "Order status toggled successfully",
+  };
 };

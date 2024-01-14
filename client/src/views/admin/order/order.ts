@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <td>${order.productName}</td>
             <td>${order.productImage}</td>
             <td>${order.price}</td>
-            <td>${paymentStatusText}</td>
+            <td id="paymentStatus_${order.id}">${paymentStatusText}</td>
             
             <td>
               <button class="btn btn-danger delete-btn" data-order-id="${order.id}">Delete</button>
@@ -74,14 +74,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       changeStatusButtons.forEach((button) => {
         button.addEventListener("click", async (event) => {
           const orderId = event.currentTarget.getAttribute("data-order-id");
+          console.log(orderId);
 
-          // Make a PATCH request to update the payment status
           try {
+            const orderToUpdate = orders.find((order) => order.id === orderId);
+            const newPaymentStatus = !orderToUpdate?.paymentStatus;
+
             const response = await axios.put(
-              `http://localhost:8000/order/${orderId}`,
+              `http://localhost:8000/order/changestatus/${orderId}`,
               {
-                paymentStatus: !orders.find((order) => order.id === orderId)
-                  ?.paymentStatus,
+                paymentStatus: newPaymentStatus,
               },
               {
                 headers: {
@@ -93,7 +95,21 @@ document.addEventListener("DOMContentLoaded", async () => {
               }
             );
 
-            // Handle the response (e.g., refresh the page)
+            // Update the payment status text in the DOM
+            const paymentStatusElement = document.getElementById(
+              `paymentStatus_${orderId}`
+            );
+            if (paymentStatusElement) {
+              paymentStatusElement.textContent = newPaymentStatus
+                ? "Done"
+                : "Pending";
+            }
+
+            // Update the payment status in the local data
+            if (orderToUpdate) {
+              orderToUpdate.paymentStatus = newPaymentStatus;
+            }
+
             console.log(response.data);
           } catch (error) {
             console.error("Error updating payment status", error);

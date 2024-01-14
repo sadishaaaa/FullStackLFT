@@ -43,10 +43,32 @@ export default class OrderModel extends BaseModel {
       .join("products", "orderdetail.product_id", "=", "products.id")
       .where("order.user_id", id);
   }
+  static async getById(id: number) {
+    return this.queryBuilder()
+      .select({
+        id: "id",
+        paymentStatus: "payment_status",
+      })
+      .from("order")
+      .where({ id })
+      .first();
+  }
   static async update(id: number, order: IOrder) {
     return this.queryBuilder().update(order).table("order").where({ id });
   }
   static async delete(id: number) {
     return this.queryBuilder().table("order").where({ id }).del();
+  }
+
+  static async findById(id: number): Promise<IOrder | null> {
+    return this.queryBuilder().table("order").where({ id }).first();
+  }
+
+  static async updateStatus(id: number, currentStatus: boolean) {
+    const newStatus = !currentStatus;
+    return this.queryBuilder()
+      .table("order")
+      .where("id", id)
+      .update({ payment_status: newStatus });
   }
 }

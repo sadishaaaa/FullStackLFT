@@ -81,6 +81,37 @@ export const deleteOrder = async (
     next(error);
   }
 };
+export const getById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const id = Number(req.params.id);
+
+    const data = await orderService.getById(id);
+
+    return res.json({
+      data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+export const toggleOrderStatus = async (req: Request, res: Response) => {
+  try {
+    const id = Number(req.params.id);
+    console.log("Order ID:", id);
+    const result = await orderService.toggleOrderStatus(id);
+    console.log("Toggle Result:", result);
+    res.status(HttpStatus.OK).json(result);
+  } catch (error) {
+    console.error("Error toggling order status:", error);
+    res
+      .status(HttpStatus.INTERNAL_SERVER_ERROR)
+      .json({ error: "Internal Server Error" });
+  }
+};
 //router "/", controller.createProduct
 //controller -> services.createProduct
 //services -> model.createProduct done
