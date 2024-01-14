@@ -6,10 +6,6 @@ body {
   flex-direction: column;
   height: 100vh;
 }
-a {
-  text-decoration: none;
-  color: white;
-}
 
 header {
   background-color: #333;
@@ -65,16 +61,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
-.remove-btn {
-  background-color: red;
-}
 
 button:hover {
   background-color: #45a049;
-}
-@media screen and (max-width: 768px) {
-  .cart-item {
-    display: flex;
-    flex-direction: column;
-  }
 }

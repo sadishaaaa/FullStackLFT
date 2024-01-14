@@ -39,20 +39,16 @@ const renderNavBar = (placeholder: HTMLElement, active: string) => {
           });
 
           const count = response.data.data;
-
-          // const cartCount = await response.json();
           console.log("Cart Count:", count);
 
-          // Update the actual count in the badge
-          cartBadge.textContent = count.toString();
-          // cartBadge.textContent = demoCount;
+          if (cartBadge) {
+            cartBadge.textContent = count.toString();
+          }
         } catch (error) {
           console.error("Error fetching cart count:", error);
         }
       }
 
-      // Execute the function on page load
-      // window.addEventListener("DOMContentLoaded", updateCartBadge);
       updateCartBadge();
     });
 };
