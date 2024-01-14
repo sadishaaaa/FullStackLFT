@@ -1,7 +1,9 @@
 // checkout.ts
 import axios from "axios";
 import { IProduct } from "../../admin/product/Iproduct";
-
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
+import { OrderSchema } from "../../../schema/order";
 document.addEventListener("DOMContentLoaded", async () => {
   // Get the product list container
   const productListContainer = document.getElementById("productList");
@@ -64,6 +66,24 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Ensure totalPrice and cartItems are defined
         if (totalPrice !== undefined && cartItems !== undefined) {
           console.log(cartItems);
+          await OrderSchema.validate(
+            {
+              shipping_address: (
+                document.getElementById("shippingAddress") as HTMLInputElement
+              ).value,
+              billing_address: (
+                document.getElementById("billingAddress") as HTMLInputElement
+              ).value,
+              payment_status: false,
+              user_id: cartItems[0].userId,
+              mode_of_payment: (
+                document.getElementById("paymentMode") as HTMLInputElement
+              ).value,
+              subtotal: totalPrice,
+            },
+            { abortEarly: false }
+          );
+
           // Prepare the JSON data for the POST request
           const orderData = {
             body: {
@@ -97,15 +117,45 @@ document.addEventListener("DOMContentLoaded", async () => {
               },
             }
           );
-
-          //   Handle the response (e.g., show a success message)
+          Toastify({
+            text: "Order placed sucessfully",
+            duration: 3000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "green",
+          }).showToast();
           console.log(response.data);
+          window.location.href = "../../user/confirm/confirm.html";
         } else {
           console.error("Error: totalPrice or cartItems is undefined");
         }
       } catch (error) {
-        // Handle errors (e.g., show an error message)
-        console.error("Error placing the order", error);
+        // Handle Yup validation errors
+        if (error.name === "ValidationError") {
+          error.errors.forEach((errorMessage: string) => {
+            Toastify({
+              text: errorMessage,
+              duration: 3000,
+              close: true,
+              gravity: "top",
+              position: "right",
+              backgroundColor: "red",
+            }).showToast();
+          });
+        } else {
+          // Handle other errors (e.g., network errors)
+          Toastify({
+            text: "Order Failed",
+            duration: 3000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "red",
+          }).showToast();
+
+          console.error("Error placing the order", error);
+        }
       }
     });
   }

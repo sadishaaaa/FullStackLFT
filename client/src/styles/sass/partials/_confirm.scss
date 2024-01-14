@@ -1,0 +1,8 @@
+.confirm {
+  border: 1px solid black;
+  margin: auto auto;
+  padding: 6rem;
+  @media screen and (min-width: 768px) {
+    padding: 4rem;
+  }
+}

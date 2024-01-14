@@ -25,14 +25,19 @@
   &__description {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem 2rem;
+    gap: 1rem;
+    font-family: "Montserrat", sans-serif;
+    padding: 1rem 1rem;
     h4 {
       margin: 0;
-      font-size: 1.5rem;
+      color: #535050;
+      font-size: 1.3rem;
     }
     p {
+      display: flex;
+      justify-content: flex-end;
       margin: 0;
+      color: #625f5f;
     }
   }
   &__action {
@@ -67,11 +72,6 @@
       margin: 0.5rem 0.5rem;
     }
   }
-}
-
-.button {
-  display: flex;
-  justify-content: flex-end;
 }
 
 .button__addToBtn {

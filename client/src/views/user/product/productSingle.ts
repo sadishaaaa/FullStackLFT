@@ -2,14 +2,14 @@ import axios from "axios";
 import { setupQuantityButtons } from "../../../utils/quantityButtons";
 import { ICart } from "../../../Interface/cart";
 import { getUserIdFromToken } from "../../../utils/getUserID";
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
 
-// TypeScript code
 const getProductDetails = async (productId) => {
   try {
-    // Replace the API_URL with the actual API endpoint
     const response = await fetch(`http://localhost:8000/products/${productId}`);
     const data = await response.json();
-    //   console.log(data);
+
     return data.data;
   } catch (error) {
     console.error("Error fetching product details:", error);
@@ -88,7 +88,7 @@ const renderProductDetails = async () => {
 
       if (userId !== null) {
         const productId = productDetails.id;
-        const quantity = quantityHandler.getQuantity(); // You may adjust the quantity as needed
+        const quantity = quantityHandler.getQuantity();
         const subtotal = productDetails.price * quantity;
 
         const cartData = {
@@ -98,20 +98,32 @@ const renderProductDetails = async () => {
           subtotal: subtotal,
         };
 
-        // Send the payload to the backend API
         sendToBackend(cartData);
+        Toastify({
+          text: "Added to cart Sucessfully",
+          duration: 3000,
+          close: true,
+          gravity: "top",
+          position: "right",
+          backgroundColor: "green",
+        }).showToast();
       } else {
-        console.error("User is not authenticated");
+        Toastify({
+          text: "Add to cart Failed",
+          duration: 3000,
+          close: true,
+          gravity: "top",
+          position: "right",
+          backgroundColor: "red",
+        }).showToast();
       }
     });
   }
 };
 
-// Load product details when the page is loaded
 window.addEventListener("DOMContentLoaded", renderProductDetails);
 
 function sendToBackend(cartData: ICart) {
-  // Make an API call to send the payload to the backend
   axios
     .post("http://localhost:8000/cart", cartData, {
       headers: {
@@ -120,10 +132,8 @@ function sendToBackend(cartData: ICart) {
     })
     .then((response) => {
       console.log("Added to cart:", response.data);
-      // You may handle success or update the UI accordingly
     })
     .catch((error) => {
       console.error("Error adding to cart:", error);
-      // You may handle errors or show an error message to the user
     });
 }

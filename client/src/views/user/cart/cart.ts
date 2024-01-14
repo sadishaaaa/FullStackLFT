@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ICart } from "../../../Interface/cart";
-
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
 document.addEventListener("DOMContentLoaded", async function () {
   const cartContainer = document.getElementById("cart-container");
   const totalSpan = document.getElementById("total");
@@ -12,6 +13,21 @@ document.addEventListener("DOMContentLoaded", async function () {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     });
+    const accessToken = localStorage.getItem("accessToken");
+    console.log(accessToken);
+    if (!accessToken) {
+      // Redirect to the login page if not authenticated
+      window.location.href = "/component/Pages/login/login.html";
+      Toastify({
+        text: "Please log in or sign up to add items to your cart.",
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "red",
+      }).showToast();
+      return;
+    }
 
     // Use the cart items from the API response
     const cartItems = response.data.data;
@@ -50,8 +66,15 @@ document.addEventListener("DOMContentLoaded", async function () {
       const removeButton = cartItem.querySelector(".remove-btn");
       if (removeButton) {
         removeButton.addEventListener("click", () => {
-          // Call the API to remove the item when the button is clicked
           removeCartItem(item.id);
+          Toastify({
+            text: "Item removed sucessfully",
+            duration: 3000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "green",
+          }).showToast();
         });
       }
     });

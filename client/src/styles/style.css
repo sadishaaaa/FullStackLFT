@@ -162,15 +162,20 @@ figure {
 .product__description {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
+  gap: 1rem;
+  font-family: "Montserrat", sans-serif;
+  padding: 1rem 1rem;
 }
 .product__description h4 {
   margin: 0;
-  font-size: 1.5rem;
+  color: #535050;
+  font-size: 1.3rem;
 }
 .product__description p {
+  display: flex;
+  justify-content: flex-end;
   margin: 0;
+  color: #625f5f;
 }
 .product__action {
   display: flex;
@@ -202,11 +207,6 @@ figure {
 }
 .quantity__btn__value {
   margin: 0.5rem 0.5rem;
-}
-
-.button {
-  display: flex;
-  justify-content: flex-end;
 }
 
 .button__addToBtn {
@@ -526,6 +526,17 @@ button {
 
 button:hover {
   background-color: #45a049;
+}
+
+.confirm {
+  border: 1px solid black;
+  margin: auto auto;
+  padding: 6rem;
+}
+@media screen and (min-width: 768px) {
+  .confirm {
+    padding: 4rem;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
