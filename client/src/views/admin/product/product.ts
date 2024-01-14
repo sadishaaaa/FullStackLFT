@@ -35,6 +35,7 @@ addProductButton.addEventListener("click", async (event) => {
     formData.append("stock", productStock.value);
 
     const response = await axios.post(addProductEndpoint, formData);
+    resetInputFields();
     Toastify({
       text: "Product added successfully",
       duration: 3000, // 3 seconds
@@ -56,3 +57,12 @@ addProductButton.addEventListener("click", async (event) => {
     console.log("Error adding product:", error);
   }
 });
+
+function resetInputFields() {
+  // Reset the values of input fields to their initial state
+  productName.value = "";
+  productImage.value = "";
+  productDescription.value = "";
+  productPrice.value = "";
+  productStock.value = "";
+}

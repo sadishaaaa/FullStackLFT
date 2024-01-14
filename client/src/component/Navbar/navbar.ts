@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const renderNavBar = (placeholder: HTMLElement, active: string) => {
   fetch("/component/Navbar/navbar.html")
     .then((response) => response.text())
@@ -16,6 +18,42 @@ const renderNavBar = (placeholder: HTMLElement, active: string) => {
 
       const closeSidebarSpan = document.getElementById("menu")!;
       closeSidebarSpan.onclick = closeSidebar;
+
+      async function updateCartBadge() {
+        const cartIcon = document.getElementById("cartIcon");
+        const cartBadge = document.getElementById("cartBadge");
+
+        // Set a demo count for testing
+        const demoCount = 1;
+
+        if (cartIcon && cartBadge) {
+          // Set the demo count in the badge
+          cartBadge.textContent = demoCount.toString();
+        }
+
+        try {
+          const response = await axios.get("http://localhost:8000/cart/count", {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          });
+
+          const count = response.data.data;
+
+          // const cartCount = await response.json();
+          console.log("Cart Count:", count);
+
+          // Update the actual count in the badge
+          cartBadge.textContent = count.toString();
+          // cartBadge.textContent = demoCount;
+        } catch (error) {
+          console.error("Error fetching cart count:", error);
+        }
+      }
+
+      // Execute the function on page load
+      // window.addEventListener("DOMContentLoaded", updateCartBadge);
+      updateCartBadge();
     });
 };
 
@@ -33,4 +71,5 @@ function closeSidebar() {
     sidebar.style.width = "0";
   }
 }
+
 export default renderNavBar;

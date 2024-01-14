@@ -36,4 +36,19 @@ export default class CartModel extends BaseModel {
   static async delete(id: number) {
     return this.queryBuilder().table("cart").where({ id }).del();
   }
+
+  static async getCount(id: number) {
+    try {
+      const count = await this.queryBuilder()
+        .count("* as totalCount")
+        .from("cart")
+        .where("user_id", id)
+        .first();
+
+      return count.totalCount || 0;
+    } catch (error) {
+      console.error("Error fetching cart count:", error);
+      throw error; // Handle the error based on your application's requirements
+    }
+  }
 }

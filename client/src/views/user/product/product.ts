@@ -16,20 +16,25 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       products.forEach((product: IProduct) => {
         const card = document.createElement("div");
-        card.className = "product-item";
+        card.className = "product";
 
         card.innerHTML = `
           <img src="${product.productImage}" alt="${product.productName}" class="img-thumbnail">
+          <div class="product__description">
           <h4>${product.productName}</h4>
-          <p>${product.description}</p>
-          <p>Price: ${product.price}</p>
-          <p>Stock: ${product.stock}</p>
+          <p><b>Price:</b> ${product.price}</p>
+          <div class= "product__action">
+          <div class="quantity">
           <button class="btn quantity__btn" id="decrease" data-product-id="${product.id}">-</button>
           <span class="quantity__value">1</span>
           <button class="btn quantity__btn" id="increase" data-product-id="${product.id}">+</button>
+          </div>
           <div class="button">
             <button type="button" class="btn button__addToBtn" data-product-id="${product.id}">Add To Cart</button>
           </div>
+          </div>
+          </div>
+          
         `;
         const increaseButton = card.querySelector(
           "#increase"
@@ -71,29 +76,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             sendToBackend(cartData);
           } else {
             console.error("User is not authenticated");
-            // You may redirect to the login page or handle the case where the user is not authenticated
           }
         });
-
-        // const addToCartButton = card.querySelector(
-        //   ".button__addToBtn"
-        // ) as HTMLButtonElement;
-        // addToCartButton.addEventListener("click", () => {
-        //   const userId = 14; // Replace with the actual user ID
-        //   const productId = product.id;
-        //   const quantity = 2; // You may adjust the quantity as needed
-        //   const subtotal = product.price * quantity;
-
-        //   const cartData = {
-        //     user_id: userId,
-        //     product_id: productId,
-        //     quantity: quantity,
-        //     subtotal: subtotal,
-        //   };
-
-        //   // Send the payload to the backend API
-        //   sendToBackend(cartData);
-        // });
+        card.addEventListener("click", () => {
+          redirectToProductSinglePage(product.id);
+        });
 
         productsContainer.appendChild(card);
       });
@@ -119,4 +106,9 @@ function sendToBackend(cartData: ICart) {
       console.error("Error adding to cart:", error);
       // You may handle errors or show an error message to the user
     });
+}
+function redirectToProductSinglePage(productId: string) {
+  // Replace the URL with your actual product single page URL and include the product ID as a parameter
+  const productSinglePageUrl = `../product/productSingle.html?id=${productId}`;
+  window.location.href = productSinglePageUrl;
 }

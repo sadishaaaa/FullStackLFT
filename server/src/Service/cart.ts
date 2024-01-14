@@ -17,6 +17,12 @@ export const getAll = async (id: number) => {
   return data;
 };
 
+export const getCount = async (id: number) => {
+  const data = await CartModel.getCount(id);
+
+  return data;
+};
+
 // export const getById = async (id: number) => {
 //   const data = await CartModel.getById(id);
 

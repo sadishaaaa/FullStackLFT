@@ -37,6 +37,23 @@ export const getCart = async (
     next(error);
   }
 };
+export const getCount = async (
+  req: Request & { user?: JwtPayload },
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const id = Number(req?.user?.id);
+
+    const data = await cartService.getCount(id);
+
+    return res.json({
+      data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const deleteCart = async (
   req: Request,
