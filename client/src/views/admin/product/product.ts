@@ -1,7 +1,9 @@
+// product.ts
 import axios from "axios";
 import Toastify from "toastify-js";
-
 import "toastify-js/src/toastify.css";
+import { ProductSchema } from "../../../schema/product";
+
 const addProductEndpoint = "http://localhost:8000/products";
 const productName = document.getElementById("productName") as HTMLInputElement;
 const productImage = document.getElementById(
@@ -24,6 +26,14 @@ addProductButton.addEventListener("click", async (event) => {
   try {
     event.preventDefault();
 
+    await ProductSchema.validate({
+      productName: productName.value,
+      description: productDescription.value,
+      price: Number(productPrice.value),
+      stock: Number(productStock.value),
+      productImage: productImage.files[0],
+    });
+
     const formData = new FormData();
     formData.append("productName", productName.value);
     if (productImage.files && productImage.files[0]) {
@@ -38,28 +48,27 @@ addProductButton.addEventListener("click", async (event) => {
     resetInputFields();
     Toastify({
       text: "Product added successfully",
-      duration: 3000, // 3 seconds
+      duration: 3000,
       close: true,
-      gravity: "top", // 'top' or 'bottom'
-      position: "right", // 'left', 'right', 'center'
+      gravity: "top",
+      position: "right",
       backgroundColor: "green",
     }).showToast();
     console.log("Product added successfully", response.data);
   } catch (error) {
     Toastify({
-      text: "Product added successfully",
-      duration: 3000, // 3 seconds
+      text: error.message || "Error adding product",
+      duration: 3000,
       close: true,
-      gravity: "top", // 'top' or 'bottom'
-      position: "right", // 'left', 'right', 'center'
-      backgroundColor: "green",
+      gravity: "top",
+      position: "right",
+      backgroundColor: "red",
     }).showToast();
-    console.log("Error adding product:", error);
+    console.error("Error adding product:", error);
   }
 });
 
 function resetInputFields() {
-  // Reset the values of input fields to their initial state
   productName.value = "";
   productImage.value = "";
   productDescription.value = "";

@@ -138,9 +138,21 @@ figure {
 
 #productContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: auto;
   gap: 2rem;
-  padding: 5rem;
+  padding: 2rem;
+}
+@media screen and (min-width: 768px) {
+  #productContainer {
+    grid-template-columns: auto auto;
+    padding: 1rem 5rem;
+  }
+}
+@media screen and (min-width: 998px) {
+  #productContainer {
+    grid-template-columns: auto auto auto auto;
+    padding: 5rem;
+  }
 }
 
 .product {
@@ -154,10 +166,14 @@ figure {
   transform: scale(1.05);
 }
 .product img {
-  width: 100%;
   max-height: 80%;
   object-fit: cover;
   border-bottom: 1px solid #ddd;
+}
+@media screen and (min-width: 768px) {
+  .product img {
+    width: 100%;
+  }
 }
 .product__description {
   display: flex;
@@ -181,6 +197,7 @@ figure {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 5rem;
 }
 .product__action .button {
   width: 16rem;
@@ -198,6 +215,8 @@ figure {
   transition: background-color 0.3s ease-in-out;
   width: 30px;
   height: 30px;
+  background-color: #eee;
+  color: #1f1e1e;
   border-radius: 50%;
   margin: 0;
 }
@@ -210,16 +229,22 @@ figure {
 }
 
 .button__addToBtn {
-  background-color: #1f1e1e;
+  background-color: #81c784;
   color: white;
   border-radius: 5px;
+  width: 60%;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
   margin: 0;
 }
 .button__addToBtn:hover {
-  background-color: rgb(225, 223, 223);
-  color: #333;
+  background-color: #333;
+  color: rgb(225, 223, 223);
+}
+@media screen and (min-width: 768px) {
+  .button__addToBtn {
+    width: 100%;
+  }
 }
 
 .content {
@@ -365,6 +390,7 @@ body {
 }
 
 .about_container {
+  width: 100vw;
   padding: 2rem;
 }
 @media screen and (min-width: 768px) {
@@ -378,28 +404,40 @@ body {
   }
 }
 
-@media screen and (min-width: 768px) {
-  .about_content {
-    display: flex;
-    justify-content: space-between;
-  }
-}
 .about_content__img figure {
-  width: 40rem;
+  width: 20rem;
 }
 .about_content__img figure img {
-  max-width: 100%;
+  max-width: 89%;
   border-radius: 20px;
 }
 .about_content__paragraph p {
-  width: 40rem;
   font-size: 1.3rem;
 }
 .about_content__paragraph p a {
   color: rgb(30, 168, 122);
   text-decoration: underline;
 }
-
+@media screen and (min-width: 768px) {
+  .about_content__paragraph p {
+    max-width: 80%;
+    font-size: 1.3rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .about_content__paragraph {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .about_content__paragraph__img figure {
+    width: 40rem;
+  }
+  .about_content__paragraph__img figure img {
+    max-width: 100%;
+    border-radius: 20px;
+  }
+}
 #app {
   display: flex;
   flex-direction: column;
@@ -458,6 +496,10 @@ body {
   #productList {
     width: 100%;
   }
+}
+
+.toast {
+  background-color: bisque;
 }
 
 body {
@@ -537,6 +579,40 @@ button:hover {
   .confirm {
     padding: 4rem;
   }
+}
+
+.dashboardContainer {
+  margin-left: 15rem;
+}
+.dashboardContainer h1 {
+  padding: 2rem 0;
+}
+
+.dashboardContent {
+  display: flex;
+  align-items: center;
+  gap: 10rem;
+}
+
+.dashboardCard {
+  padding: 2rem 4rem;
+  border-radius: 10px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.dashboardCard h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.dashboardCard__order {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.dashboardCard__user {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 /*# sourceMappingURL=style.css.map */

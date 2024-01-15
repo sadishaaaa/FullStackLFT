@@ -1,8 +1,17 @@
 #productContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: auto;
   gap: 2rem;
-  padding: 5rem;
+  padding: 2rem;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: auto auto;
+    padding: 1rem 5rem;
+  }
+  @media screen and (min-width: 998px) {
+    grid-template-columns: auto auto auto auto;
+    padding: 5rem;
+  }
 }
 
 .product {
@@ -17,10 +26,13 @@
   }
 
   img {
-    width: 100%;
     max-height: 80%; // Adjust as needed
     object-fit: cover;
     border-bottom: 1px solid #ddd;
+
+    @media screen and (min-width: 768px) {
+      width: 100%;
+    }
   }
   &__description {
     display: flex;
@@ -44,6 +56,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 5rem;
     .button {
       width: 16rem;
     }
@@ -61,6 +74,8 @@
     transition: background-color 0.3s ease-in-out;
     width: 30px;
     height: 30px;
+    background-color: #eee;
+    color: #1f1e1e;
     border-radius: 50%;
     margin: 0;
 
@@ -75,14 +90,19 @@
 }
 
 .button__addToBtn {
-  background-color: #1f1e1e;
+  background-color: #81c784;
   color: white;
   border-radius: 5px;
+  width: 60%;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
   margin: 0;
   &:hover {
-    background-color: rgb(225, 223, 223);
-    color: #333;
+    background-color: #333;
+    color: rgb(225, 223, 223);
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 100%;
   }
 }

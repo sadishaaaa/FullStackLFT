@@ -2,6 +2,7 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 .about_container {
+  width: 100vw;
   padding: 2rem;
   @media screen and (min-width: 768px) {
     padding: 2rem 9rem 4rem 7rem;
@@ -13,27 +14,44 @@ body {
   }
 }
 .about_content {
-  @media screen and (min-width: 768px) {
-    display: flex;
-    justify-content: space-between;
-  }
   &__img {
     figure {
-      width: 40rem;
+      width: 20rem;
       img {
-        max-width: 100%;
+        max-width: 89%;
         border-radius: 20px;
       }
     }
   }
   &__paragraph {
     p {
-      width: 40rem;
       font-size: 1.3rem;
       a {
         color: rgb(30, 168, 122);
         text-decoration: underline;
       }
     }
+    @media screen and (min-width: 768px) {
+      p {
+        max-width: 80%;
+        font-size: 1.3rem;
+      }
+    }
+    @media screen and (min-width: 768px) {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      &__img {
+        figure {
+          width: 40rem;
+          img {
+            max-width: 100%;
+            border-radius: 20px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 768px) {
   }
 }

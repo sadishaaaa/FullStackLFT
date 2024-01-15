@@ -119,11 +119,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           );
           Toastify({
             text: "Order placed sucessfully",
-            duration: 3000,
+            duration: -1,
             close: true,
+            stopOnFocus: true,
             gravity: "top",
             position: "right",
             backgroundColor: "green",
+            style: { width: "500px" },
           }).showToast();
           console.log(response.data);
           window.location.href = "../../user/confirm/confirm.html";
