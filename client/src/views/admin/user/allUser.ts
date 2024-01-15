@@ -21,11 +21,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       const tableHeader = document.createElement("thead");
       tableHeader.innerHTML = `
         <tr>
-          <th scope="col">first Name</th>
-          <th scope="col">last Name</th>
-          <th scope="col">email</th>
-          <th scope="col">address</th>
-          <th scope="col">contact NO</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Address</th>
+          <th scope="col">ContactNo</th>
           <th scope="col">Actions</th>
         </tr>
       `;
@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td>${user.address}</td>
           <td>${user.contactNo}</td>
           <td>
-          <button class="btn btn-primary update-btn" data-product-id="${user.id}">Update</button>
           <button class="btn btn-danger delete-btn" data-product-id="${user.id}">Delete</button>
           </td>
         `;

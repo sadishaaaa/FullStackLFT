@@ -37,7 +37,7 @@
 @media screen and (min-width: 768px) {
   .nav__links {
     display: flex;
-    gap: 6rem;
+    gap: 3rem;
   }
 }
 .nav__icons {
@@ -52,6 +52,14 @@
   .nav__menu {
     display: none;
   }
+}
+
+.cart-badge {
+  background-color: #e44d26;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 50%;
+  font-size: 12px;
 }
 
 .wrapper {
@@ -112,6 +120,10 @@ figure {
   margin: 0;
 }
 
+.icon {
+  color: #fff;
+}
+
 #sidebar {
   height: 100%;
   width: 0;
@@ -150,7 +162,7 @@ figure {
 }
 @media screen and (min-width: 998px) {
   #productContainer {
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto;
     padding: 5rem;
   }
 }
@@ -287,9 +299,14 @@ figure {
 @media screen and (min-width: 768px) {
   .content {
     padding: 2rem 9rem 4rem 7rem;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     line-height: 2;
+  }
+}
+@media screen and (min-width: 994px) {
+  .content {
+    flex-direction: row;
   }
 }
 
@@ -438,6 +455,12 @@ body {
     border-radius: 20px;
   }
 }
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #app {
   display: flex;
   flex-direction: column;

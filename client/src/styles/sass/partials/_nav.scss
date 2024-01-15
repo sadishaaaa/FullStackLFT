@@ -34,7 +34,7 @@
 
     @media screen and (min-width: 768px) {
       display: flex;
-      gap: 6rem;
+      gap: 3rem;
     }
   }
   &__icons {
@@ -50,4 +50,11 @@
       display: none;
     }
   }
+}
+.cart-badge {
+  background-color: #e44d26;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 50%;
+  font-size: 12px;
 }

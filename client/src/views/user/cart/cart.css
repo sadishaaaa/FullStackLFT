@@ -26,7 +26,10 @@ header {
 }
 
 .cart-item {
-  display: table-row;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
   border-bottom: 1px solid #ddd;
 }
 
@@ -76,5 +79,6 @@ button:hover {
   .cart-item {
     display: flex;
     flex-direction: column;
+    gap: 0;
   }
 }

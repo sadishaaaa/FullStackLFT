@@ -34,8 +34,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       const productItem = document.createElement("div");
       productItem.innerHTML = `
         <div>
-          <h3>Product Name: ${item.productName}</h3>
+          
           <img src="${item.productImage}" alt="${item.productName}" />
+          <p> <b>Product Name: ${item.productName}</b></p>
           <p>Price: ${item.price}</p>
           <p>Quantity: ${item.quantity}</p>
         </div>

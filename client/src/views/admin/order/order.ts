@@ -37,12 +37,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         `;
       table.appendChild(tableHeader);
 
-      // Table body
       const tableBody = document.createElement("tbody");
       orders.forEach((order: IOrder) => {
         const row = document.createElement("tr");
 
-        // Display "Pending" or "Done" based on the payment status
         const paymentStatusText = order.paymentStatus ? "Done" : "Pending";
 
         row.innerHTML = `
@@ -57,11 +55,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             <td id="paymentStatus_${order.id}">${paymentStatusText}</td>
             
             <td>
-              <button class="btn btn-danger delete-btn" data-order-id="${order.id}">Delete</button>
+              
               <button class="btn btn-primary change-status-btn" data-order-id="${order.id}">Change Status</button>
             </td>
           `;
-
+        // <button class="btn btn-danger delete-btn" data-order-id="${order.id}">Delete</button>
         tableBody.appendChild(row);
       });
 

@@ -9,10 +9,6 @@ import NotFoundError from "../Error/notFoundError";
 
 const logger = loggerWithNameSpace("ErrorHandler");
 
-/**
- * Error response middleware for 404 not found. This middleware function should be at the very bottom of the stack.
- *
- */
 export function notFoundError(_req: Request, res: Response) {
   return res.status(HttpStatus.NOT_FOUND).json({
     message: HttpStatus.getStatusText(HttpStatus.NOT_FOUND),

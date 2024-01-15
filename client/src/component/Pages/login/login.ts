@@ -1,6 +1,6 @@
 import axios from "axios";
 import Toastify from "toastify-js";
-import { updateUserSchema } from "../../../schema/auth"; // Adjust the path based on your project structure
+import { updateUserSchema } from "../../../schema/auth";
 import "toastify-js/src/toastify.css";
 
 const signInEndpoint = "http://localhost:8000/auth/login";
@@ -13,17 +13,12 @@ const signInButton = document.getElementById(
 signInButton.addEventListener("click", async (event) => {
   try {
     event.preventDefault();
-
-    // Creating an object with the login form data
     const userData = {
       email: email.value,
       password: password.value,
     };
 
-    // Validating the login form data against the Yup schema
     await updateUserSchema.validate(userData, { abortEarly: false });
-
-    // If validation passes, proceed with the API call
     const response = await axios.post(signInEndpoint, userData);
 
     const userRole = response.data.user.role;
@@ -49,7 +44,6 @@ signInButton.addEventListener("click", async (event) => {
 
     console.log("Login successful", response.data);
   } catch (error) {
-    // Handle Yup validation errors
     if (error.name === "ValidationError") {
       error.errors.forEach((errorMessage: string) => {
         Toastify({
@@ -62,7 +56,6 @@ signInButton.addEventListener("click", async (event) => {
         }).showToast();
       });
     } else {
-      // Handle other errors (e.g., network errors)
       Toastify({
         text: `Login Failed: ${error.message}`,
         duration: 3000,

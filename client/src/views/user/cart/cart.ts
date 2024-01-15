@@ -5,9 +5,14 @@ import "toastify-js/src/toastify.css";
 document.addEventListener("DOMContentLoaded", async function () {
   const cartContainer = document.getElementById("cart-container");
   const totalSpan = document.getElementById("total");
+  const accessToken = localStorage.getItem("accessToken");
+  if (!accessToken) {
+    alert("Signup for add to cart functionality");
+    window.location.href = "/views/user/home.html";
+    return;
+  }
 
   try {
-    // Replace the API endpoint with your actual endpoint
     const response = await axios.get("http://localhost:8000/cart", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -16,7 +21,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     const accessToken = localStorage.getItem("accessToken");
     console.log(accessToken);
     if (!accessToken) {
-      // Redirect to the login page if not authenticated
       window.location.href = "/component/Pages/login/login.html";
       Toastify({
         text: "Please log in or sign up to add items to your cart.",
@@ -29,10 +33,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       return;
     }
 
-    // Use the cart items from the API response
     const cartItems = response.data.data;
     console.log(cartItems);
-    // Render cart items
+
     cartItems.forEach((item) => {
       const cartItem = document.createElement("div");
       cartItem.className = "cart-item";

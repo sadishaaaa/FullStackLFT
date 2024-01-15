@@ -41,17 +41,15 @@ document.addEventListener("DOMContentLoaded", async () => {
           (document.getElementById("stock") as HTMLInputElement).value,
           10
         ),
-        // Add more fields as needed
       };
 
       try {
-        // Send update request to the API
         await axios.put(
           `http://localhost:8000/products/${productId}`,
           updatedData
         );
         alert("Product updated successfully!");
-        // Redirect to the product list page or perform other actions
+        window.location.href = "/views/admin/product/allProduct.html";
       } catch (error) {
         console.error("Error updating product:", error);
       }

@@ -1,8 +1,12 @@
 import axios from "axios";
 
 document.addEventListener("DOMContentLoaded", async () => {
+  const accessToken = localStorage.getItem("accessToken");
+  if (!accessToken) {
+    window.location.href = "../login/login.html";
+    return;
+  }
   try {
-    // Fetch user data from the server
     const response = await axios.get("http://localhost:8000/users/me", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -36,9 +40,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 document.addEventListener("DOMContentLoaded", async () => {
   const logoutButton = document.getElementById("logout");
+  console.log(logoutButton);
   if (logoutButton) {
     logoutButton.addEventListener("click", () => {
       localStorage.removeItem("accessToken");
+
       localStorage.removeItem("refreshToken");
       window.location.href = "../login/login.html";
     });

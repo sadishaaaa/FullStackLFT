@@ -17,7 +17,6 @@ const getProductDetails = async (productId) => {
 };
 
 const renderProductDetails = async () => {
-  // Get product id from URL parameters (you might need to modify this part)
   const urlParams = new URLSearchParams(window.location.search);
   const productId = urlParams.get("id");
 
@@ -31,6 +30,7 @@ const renderProductDetails = async () => {
   console.log(productDetails);
 
   if (productDetails) {
+    const stockStatus = productDetails.stock > 0 ? "Available" : "Out of stock";
     productContainer.innerHTML = `
             <div class="product-image">
               <img src="${
@@ -39,9 +39,7 @@ const renderProductDetails = async () => {
             </div>
             <div class="product-info">
               <h2>${productDetails.productName}</h2>
-              <p>In Stock: <strong>${
-                productDetails.stock ? "Yes" : "No"
-              }</strong></p>
+              <p>In Stock: <strong>${stockStatus}</strong></p>
               <p>Description: ${productDetails.description}</p>
               <p class="price">$${productDetails.price.toFixed(2)}</p>
               <div class= "product__action">
@@ -87,29 +85,40 @@ const renderProductDetails = async () => {
       const userId = accessToken ? getUserIdFromToken(accessToken) : null;
 
       if (userId !== null) {
-        const productId = productDetails.id;
-        const quantity = quantityHandler.getQuantity();
-        const subtotal = productDetails.price * quantity;
+        if (productDetails.stock > 0) {
+          const productId = productDetails.id;
+          const quantity = quantityHandler.getQuantity();
+          const subtotal = productDetails.price * quantity;
 
-        const cartData = {
-          user_id: userId,
-          product_id: productId,
-          quantity: quantity,
-          subtotal: subtotal,
-        };
+          const cartData = {
+            user_id: userId,
+            product_id: productId,
+            quantity: quantity,
+            subtotal: subtotal,
+          };
 
-        sendToBackend(cartData);
-        Toastify({
-          text: "Added to cart Sucessfully",
-          duration: 3000,
-          close: true,
-          gravity: "top",
-          position: "right",
-          backgroundColor: "green",
-        }).showToast();
+          sendToBackend(cartData);
+          Toastify({
+            text: "Added to cart successfully",
+            duration: 3000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "green",
+          }).showToast();
+        } else {
+          Toastify({
+            text: "This product is currently out of stock.",
+            duration: 3000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "red",
+          }).showToast();
+        }
       } else {
         Toastify({
-          text: "Add to cart Failed",
+          text: "Signup to add products in cart",
           duration: 3000,
           close: true,
           gravity: "top",

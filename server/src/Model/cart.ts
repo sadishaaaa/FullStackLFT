@@ -29,9 +29,9 @@ export default class CartModel extends BaseModel {
     return this.queryBuilder().insert(cart).table("cart");
   }
 
-  //   static async update(id: number, cart: ICart) {
-  //     return this.queryBuilder().update(cart).table("cart").where({ id });
-  //   }
+  static async deleteAll() {
+    return this.queryBuilder().table("cart").del();
+  }
 
   static async delete(id: number) {
     return this.queryBuilder().table("cart").where({ id }).del();
@@ -48,7 +48,7 @@ export default class CartModel extends BaseModel {
       return count.totalCount || 0;
     } catch (error) {
       console.error("Error fetching cart count:", error);
-      throw error; // Handle the error based on your application's requirements
+      throw error;
     }
   }
 }

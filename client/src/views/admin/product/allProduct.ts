@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const response = await axios.get("http://localhost:8000/products");
     const products: IProduct[] = response.data.data;
     console.log(response.data.data);
-    const productsContainer = document.getElementById("productContainer");
+    const productsContainer = document.getElementById("product_Container");
 
     if (productsContainer) {
       const table = document.createElement("table");
@@ -38,8 +38,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     <td>${product.price}</td>
     <td>${product.stock}</td>
     <td>
-      <button class="btn btn-primary update-btn" data-product-id="${product.id}">Update</button>
-      <button class="btn btn-danger delete-btn" data-product-id="${product.id}">Delete</button>
+      <button class="btn btn-primary update-btn" data-product-id="${product.id}"><span class="material-symbols-outlined icon">
+      update
+      </span></button>
+      <button class="btn btn-danger delete-btn" data-product-id="${product.id}"><span class="material-symbols-outlined icon">
+      delete
+      </span></button>
     </td>
   `;
 

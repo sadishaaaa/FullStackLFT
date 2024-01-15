@@ -55,6 +55,19 @@ export const getCount = async (
   }
 };
 
+export const deleteAll = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const data = await cartService.deleteAll();
+
+    return res.json({ message: "cartItem successfully deleted" });
+  } catch (error) {
+    next(error);
+  }
+};
 export const deleteCart = async (
   req: Request,
   res: Response,

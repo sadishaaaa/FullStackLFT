@@ -47,6 +47,15 @@ export const getCount = async (id: number) => {
 //   return updatedProduct;
 // };
 
+export const deleteAll = async () => {
+  const cartItem = await CartModel.deleteAll();
+
+  if (!cartItem) {
+    throw new NotFoundError(`Product not found`);
+  }
+
+  await CartModel.deleteAll();
+};
 export const deleteCart = async (id: number) => {
   const cartItem = await CartModel.getAll(id);
 

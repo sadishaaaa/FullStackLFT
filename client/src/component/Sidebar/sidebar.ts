@@ -5,6 +5,15 @@ const renderSideBar = (placeholder: HTMLElement) => {
       placeholder.innerHTML = data;
       const navLinks = document.querySelectorAll(".nav-link");
       console.log(navLinks);
+      const logoutButton = document.getElementById("logout")!;
+      console.log(logoutButton);
+      if (logoutButton) {
+        logoutButton.addEventListener("click", () => {
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
+          window.location.href = "/component/Pages/login/login.html";
+        });
+      }
     });
 };
 

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getCart, getCount } from "../Controller/cart";
+import { deleteAll, getCart, getCount } from "../Controller/cart";
 import { createCart } from "../Controller/cart";
 import { deleteCart } from "../Controller/cart";
 // import { validateReqBody, validateReqQuery } from "../Middleware/validator";
@@ -11,6 +11,7 @@ const router = Router();
 router.post("/", createCart);
 router.get("/", getCart);
 router.get("/count", getCount);
+router.delete("/", deleteAll);
 router.delete("/:id", deleteCart);
 
 export default router;

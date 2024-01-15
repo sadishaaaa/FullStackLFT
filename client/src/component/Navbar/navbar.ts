@@ -23,11 +23,9 @@ const renderNavBar = (placeholder: HTMLElement, active: string) => {
         const cartIcon = document.getElementById("cartIcon");
         const cartBadge = document.getElementById("cartBadge");
 
-        // Set a demo count for testing
         const demoCount = 1;
 
         if (cartIcon && cartBadge) {
-          // Set the demo count in the badge
           cartBadge.textContent = demoCount.toString();
         }
 
@@ -57,7 +55,7 @@ function openSidebar() {
   const sidebar = document.getElementById("sidebar");
   console.log(sidebar);
   if (sidebar) {
-    sidebar.style.width = "100%";
+    sidebar.style.width = "60%";
   }
 }
 
