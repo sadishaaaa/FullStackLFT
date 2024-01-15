@@ -1,9 +1,7 @@
 let imgs = document.querySelectorAll(
   ".carousel-img"
 ) as NodeListOf<HTMLElement>;
-let titles = document.querySelectorAll(
-  ".carousel-title"
-) as NodeListOf<HTMLElement>;
+
 let totalImgs = imgs.length;
 let imgPosition = 0;
 let slideInterval: number;
@@ -16,11 +14,6 @@ function update() {
 
   imgs[imgPosition].classList.remove("hidden");
   imgs[imgPosition].classList.add("visible");
-
-  for (let title of titles) {
-    title.classList.remove("visible");
-    title.classList.add("hidden");
-  }
 
   titles[imgPosition].classList.remove("hidden");
   titles[imgPosition].classList.add("visible");

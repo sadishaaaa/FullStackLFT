@@ -1,5 +1,7 @@
 import axios from "axios";
 import { IUser } from "./IUser";
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -9,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       },
     });
 
-    const user: IUser[] = response.data.data;
+    const users: IUser[] = response.data.data;
     console.log(response.data.data);
     const userContainer = document.getElementById("userContainer");
 
@@ -33,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       // Table body
       const tableBody = document.createElement("tbody");
-      user.forEach((user: IUser) => {
+      users.forEach((user: IUser) => {
         const row = document.createElement("tr");
         row.innerHTML = `
           <td>${user.firstName}</td>
@@ -42,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td>${user.address}</td>
           <td>${user.contactNo}</td>
           <td>
-          <button class="btn btn-danger delete-btn" data-product-id="${user.id}">Delete</button>
+            <button class="btn btn-danger delete-btn" data-user-id="${user.id}">Delete</button>
           </td>
         `;
         tableBody.appendChild(row);
@@ -50,8 +52,50 @@ document.addEventListener("DOMContentLoaded", async () => {
       table.appendChild(tableBody);
 
       userContainer.appendChild(table);
+
+      const deleteButtons = document.querySelectorAll(".delete-btn");
+      deleteButtons.forEach((button) => {
+        button.addEventListener("click", async (event) => {
+          const userId = event.currentTarget.dataset.userId;
+          const confirmDelete = confirm(
+            "Are you sure you want to delete this user?"
+          );
+          if (confirmDelete) {
+            try {
+              await axios.delete(`http://localhost:8000/users/${userId}`, {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem(
+                    "accessToken"
+                  )}`,
+                },
+              });
+              event.currentTarget.closest("tr").remove();
+
+              Toastify({
+                text: "User deleted successfully",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "green",
+              }).showToast();
+            } catch (error) {
+              console.error("Error deleting user:", error);
+
+              Toastify({
+                text: "Error deleting user",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "red",
+              }).showToast();
+            }
+          }
+        });
+      });
     }
   } catch (error) {
-    console.log("Error fetching product data:", error);
+    console.log("Error fetching user data:", error);
   }
 });

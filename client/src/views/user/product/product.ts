@@ -22,12 +22,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           </div>
         `;
 
-        // Attach an event listener to the product card
         card.addEventListener("click", () => {
           redirectToProductSinglePage(`${product.id}`);
         });
 
-        // Append the product card to the container
         productsContainer.appendChild(card);
       });
     }
