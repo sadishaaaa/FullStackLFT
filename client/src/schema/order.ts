@@ -9,13 +9,13 @@ export const OrderSchema = Yup.object({
     .required("Billing Address is required")
     .max(255, "Billing Address should not exceed 255 characters"),
 
-  payment_status: Yup.boolean().required("Payment Status is required"),
+  // payment_status: Yup.boolean().required("Payment Status is required"),
 
-  user_id: Yup.number().required("User ID is required"),
+  // user_id: Yup.number().required("User ID is required"),
 
-  mode_of_payment: Yup.string()
-    .required("Mode of Payment is required")
-    .max(255, "Mode of Payment should not exceed 255 characters"),
+  // mode_of_payment: Yup.string()
+  //   .required("Mode of Payment is required")
+  //   .max(255, "Mode of Payment should not exceed 255 characters"),
 
-  subtotal: Yup.number().required("Subtotal is required"),
+  // subtotal: Yup.number().required("Subtotal is required"),
 });

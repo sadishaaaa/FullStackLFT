@@ -25,9 +25,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         </tr>
       `;
       table.appendChild(tableHeader);
-      // ... (your existing code)
-
-      // Table body
       const tableBody = document.createElement("tbody");
       products.forEach((product: IProduct) => {
         const row = document.createElement("tr");
@@ -47,20 +44,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     </td>
   `;
 
-        // Add event listener for the "Update" button
+        // Adding event listener for the "Update" button
         const updateBtn = row.querySelector(".update-btn");
         updateBtn?.addEventListener("click", () => {
           const productId = updateBtn.getAttribute("data-product-id");
           window.location.href = `/views/admin/product/updateProduct.html?id=${productId}`;
         });
 
-        // Add event listener for the "Delete" button
+        // Adding event listener for the "Delete" button
         const deleteBtn = row.querySelector(".delete-btn");
         deleteBtn?.addEventListener("click", async () => {
           const productId = deleteBtn.getAttribute("data-product-id");
           try {
             await axios.delete(`http://localhost:8000/products/${productId}`);
-            // You may also want to update the UI to reflect the deletion
             row.remove();
           } catch (error) {
             console.error(

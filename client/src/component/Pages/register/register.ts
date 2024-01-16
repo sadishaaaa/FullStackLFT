@@ -61,7 +61,6 @@ signUpButton.addEventListener("click", async (event) => {
         }).showToast();
       });
     } else {
-      // Handle other errors (e.g., network errors)
       Toastify({
         text: `Registration Failed: ${error.message}`,
         duration: 3000,

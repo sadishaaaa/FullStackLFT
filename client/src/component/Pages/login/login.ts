@@ -17,8 +17,10 @@ signInButton.addEventListener("click", async (event) => {
       email: email.value,
       password: password.value,
     };
+    console.log("Before Schema Validation");
 
     await updateUserSchema.validate(userData, { abortEarly: false });
+    console.log("After Schema Validation");
     const response = await axios.post(signInEndpoint, userData);
 
     const userRole = response.data.user.role;
@@ -57,7 +59,7 @@ signInButton.addEventListener("click", async (event) => {
       });
     } else {
       Toastify({
-        text: `Login Failed: ${error.message}`,
+        text: `Login Failed: Email or password is wrong`,
         duration: 3000,
         close: true,
         gravity: "top",

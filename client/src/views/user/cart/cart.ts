@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const cartItems = response.data.data;
     console.log(cartItems);
 
-    cartItems.forEach((item) => {
+    cartItems.forEach((item: any) => {
       const cartItem = document.createElement("div");
       cartItem.className = "cart-item";
 
@@ -64,8 +64,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (cartContainer) {
         cartContainer.appendChild(cartItem);
       }
-
-      // Add click event listener to the remove button
       const removeButton = cartItem.querySelector(".remove-btn");
       if (removeButton) {
         removeButton.addEventListener("click", () => {
@@ -105,22 +103,17 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   async function removeCartItem(cartItemId: number) {
     try {
-      // Replace the API endpoint with your actual endpoint
       await axios.delete(`http://localhost:8000/cart/${cartItemId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       });
-
-      // Remove the item from the DOM
       const removedItem = document
         .querySelector(`.cart-item [data-id="${cartItemId}"]`)
         ?.closest(".cart-item");
       if (removedItem) {
         removedItem.remove();
       }
-
-      // Recalculate and display total
       const updatedTotal = cartItems
         .filter((item: ICart) => item.id !== cartItemId)
         .reduce((acc: number, item: ICart) => acc + item.subtotal, 0);

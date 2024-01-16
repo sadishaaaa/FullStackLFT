@@ -1,11 +1,9 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-
 import config from "../config";
 import UserModel from "../Model/user";
 import { ISignUp } from "../Interface/auth";
 import { ACCESS_TOKEN_EXPIRY, REFRESH_TOKEN_EXPIRY } from "../Constant/jwt";
-import UnauthenticatedError from "../Error/unauthenticatedError";
 import BadRequestError from "../Error/badRequestError";
 import { IUser } from "../Interface/user";
 

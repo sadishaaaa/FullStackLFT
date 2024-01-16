@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import config from "./config";
-import routes from "./routes";
+import routes from "./Routes/index";
 import { logger } from "./Middleware/logger";
 import { genericErrorHandler, notFoundError } from "./Middleware/errorHandler";
 

@@ -162,7 +162,7 @@ figure {
 }
 @media screen and (min-width: 998px) {
   #productContainer {
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
     padding: 5rem;
   }
 }
@@ -179,6 +179,7 @@ figure {
 }
 .product img {
   max-height: 80%;
+  max-width: 100%;
   object-fit: cover;
   border-bottom: 1px solid #ddd;
 }

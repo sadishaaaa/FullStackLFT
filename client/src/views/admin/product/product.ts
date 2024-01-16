@@ -1,4 +1,3 @@
-// product.ts
 import axios from "axios";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";

@@ -29,7 +29,7 @@ export const getAll = async (_req: Request, res: Response) => {
     data,
   });
 };
-
+//single product
 export const getById = async (
   req: Request,
   res: Response,

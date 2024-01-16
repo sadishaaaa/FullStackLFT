@@ -1,7 +1,5 @@
-import { ICart } from "../Interface/cart";
 import { IOrder } from "../Interface/order";
 import BaseModel from "../Model/baseModel";
-// import { IProduct } from "../Interface/product";
 
 export default class OrderModel extends BaseModel {
   static async create(order: IOrder) {

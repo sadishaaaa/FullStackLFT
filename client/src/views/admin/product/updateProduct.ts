@@ -1,4 +1,3 @@
-// updateProduct.ts
 import axios from "axios";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -21,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     (document.getElementById("stock") as HTMLInputElement).value =
       product.stock.toString();
 
-    // Add event listener for form submission
+    // event listener for form submission
     const updateProductForm = document.getElementById("updateProductForm");
     updateProductForm?.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -34,13 +33,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         description: (
           document.getElementById("description") as HTMLInputElement
         ).value,
-        price: parseFloat(
-          (document.getElementById("price") as HTMLInputElement).value
-        ),
-        stock: parseInt(
-          (document.getElementById("stock") as HTMLInputElement).value,
-          10
-        ),
+        price: (document.getElementById("price") as HTMLInputElement).value,
+        stock: (document.getElementById("stock") as HTMLInputElement).value,
       };
 
       try {

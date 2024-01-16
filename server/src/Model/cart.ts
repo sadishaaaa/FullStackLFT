@@ -1,6 +1,5 @@
 import { ICart } from "../Interface/cart";
 import BaseModel from "../Model/baseModel";
-// import { IProduct } from "../Interface/product";
 
 export default class CartModel extends BaseModel {
   static async getAll(id: number) {

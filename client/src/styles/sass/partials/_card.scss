@@ -9,7 +9,7 @@
     padding: 1rem 5rem;
   }
   @media screen and (min-width: 998px) {
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
     padding: 5rem;
   }
 }
@@ -26,7 +26,8 @@
   }
 
   img {
-    max-height: 80%; // Adjust as needed
+    max-height: 80%;
+    max-width: 100%;
     object-fit: cover;
     border-bottom: 1px solid #ddd;
 

@@ -1,17 +1,18 @@
 import axios from "axios";
 
-const renderNavBar = (placeholder: HTMLElement, active: string) => {
+const renderNavBar = (placeholder: HTMLElement) => {
   fetch("/component/Navbar/navbar.html")
     .then((response) => response.text())
     .then((data) => {
+      //to  the content of a specified HTML element (placeholder) to the fetched HTML content
       placeholder.innerHTML = data;
-      const navLinks = document.querySelectorAll(".nav__item");
+      // const navLinks = document.querySelectorAll(".nav__item");
 
-      for (const navLink of navLinks) {
-        navLink.classList.remove("active");
-      }
-      const currentPage = document.getElementById(active);
-      currentPage!.classList.add("active");
+      // for (const navLink of navLinks) {
+      //   navLink.classList.remove("active");
+      // }
+      // const currentPage = document.getElementById(active);
+      // currentPage!.classList.add("active");
 
       const openSidebarSpan = document.getElementById("openSidebar")!;
       openSidebarSpan.onclick = openSidebar;
@@ -23,7 +24,7 @@ const renderNavBar = (placeholder: HTMLElement, active: string) => {
         const cartIcon = document.getElementById("cartIcon");
         const cartBadge = document.getElementById("cartBadge");
 
-        const demoCount = 1;
+        const demoCount = 0;
 
         if (cartIcon && cartBadge) {
           cartBadge.textContent = demoCount.toString();

@@ -2,7 +2,6 @@ import axios from "axios";
 
 const checkAuth = async () => {
   const accessToken = localStorage.getItem("accessToken") || "";
-  // const refreshToken = localStorage.getItem("refreshToken") || "";
   if (accessToken !== "") {
     const response = await axios.get("http://localhost:8000/users/me", {
       headers: {

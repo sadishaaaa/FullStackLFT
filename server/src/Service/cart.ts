@@ -23,30 +23,6 @@ export const getCount = async (id: number) => {
   return data;
 };
 
-// export const getById = async (id: number) => {
-//   const data = await CartModel.getById(id);
-
-//   if (!data) {
-//     throw new NotFoundError(`Product with id: ${id} not found`);
-//   }
-
-//   return data;
-// };
-
-// export const update = async (id: number, body: ICart) => {
-//   const product = await CartModel.getAll(id);
-
-//   if (!product) {
-//     throw new NotFoundError(`Product with id: ${id} not found`);
-//   }
-
-//   await CartModel.update(id, body);
-
-//   const updatedProduct = await CartModel.getAll(id);
-
-//   return updatedProduct;
-// };
-
 export const deleteAll = async () => {
   const cartItem = await CartModel.deleteAll();
 

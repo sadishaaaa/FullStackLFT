@@ -46,6 +46,8 @@ export const updateUser = async (
     next(error);
   }
 };
+
+// Extracting user ID from the token payload
 export const checkTokenvalid = async (
   req: any,
   res: Response,

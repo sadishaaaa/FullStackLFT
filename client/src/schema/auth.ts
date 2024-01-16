@@ -39,7 +39,6 @@ export const updateUserSchema = Yup.object({
   email: Yup.string()
     .required("Email is required")
     .email("Email must be a valid format")
-    .max(50, "Email should not exceed 50 characters")
     .min(10, "Email should contain at least 10 characters"),
 
   password: Yup.string()

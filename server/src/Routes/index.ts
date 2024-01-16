@@ -1,7 +1,6 @@
 import { Router } from "express";
 
 import authRoutes from "./auth";
-// import cookieRoutes from "./cookie";
 import userRoutes from "./user";
 import productRoutes from "./product";
 import cartRoutes from "./cart";

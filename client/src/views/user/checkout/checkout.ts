@@ -1,15 +1,13 @@
-// checkout.ts
 import axios from "axios";
 import { IProduct } from "../../admin/product/Iproduct";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
 import { OrderSchema } from "../../../schema/order";
 document.addEventListener("DOMContentLoaded", async () => {
-  // Get the product list container
   const productListContainer = document.getElementById("productList");
   const totalContainer = document.getElementById("total");
   let totalPrice: number;
-  let cartItems: IProduct[]; // Assuming IProduct is the type of your product
+  let cartItems: IProduct[];
 
   try {
     const response = await axios.get("http://localhost:8000/cart", {
@@ -21,7 +19,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     cartItems = response.data.data;
     console.log(cartItems[0]);
 
-    // Iterate through the cart items and create HTML elements for each
     (
       document.getElementById("name") as HTMLInputElement
     ).value = `${cartItems[0].firstName} ${cartItems[0].lastName}`;
@@ -84,8 +81,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             },
             { abortEarly: false }
           );
-
-          // Prepare the JSON data for the POST request
           const orderData = {
             body: {
               shipping_address: (
@@ -106,8 +101,6 @@ document.addEventListener("DOMContentLoaded", async () => {
               quantity: item.quantity,
             })),
           };
-
-          //   Make a POST request to the backend
           const response = await axios.post(
             "http://localhost:8000/order",
             orderData,
@@ -147,7 +140,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             }).showToast();
           });
         } else {
-          // Handle other errors (e.g., network errors)
           Toastify({
             text: "Order Failed",
             duration: 3000,
